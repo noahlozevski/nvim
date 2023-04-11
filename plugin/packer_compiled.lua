@@ -74,6 +74,12 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["Comment.nvim"] = {
+    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0" },
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    url = "https://github.com/numToStr/Comment.nvim"
+  },
   LuaSnip = {
     loaded = true,
     path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/LuaSnip",
@@ -84,20 +90,125 @@ _G.packer_plugins = {
     path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
   },
+  ["cmp-async-path"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-async-path",
+    url = "https://github.com/FelipeLema/cmp-async-path"
+  },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
+  ["cmp-calc"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-calc",
+    url = "https://github.com/hrsh7th/cmp-calc"
+  },
+  ["cmp-cmdline"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
+    url = "https://github.com/hrsh7th/cmp-cmdline"
+  },
+  ["cmp-cmdline-history"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-cmdline-history",
+    url = "https://github.com/dmitmel/cmp-cmdline-history"
+  },
+  ["cmp-emoji"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-emoji",
+    url = "https://github.com/hrsh7th/cmp-emoji"
+  },
+  ["cmp-fuzzy-buffer"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-fuzzy-buffer",
+    url = "https://github.com/tzachar/cmp-fuzzy-buffer"
+  },
+  ["cmp-fuzzy-path"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-fuzzy-path",
+    url = "https://github.com/tzachar/cmp-fuzzy-path"
+  },
+  ["cmp-git"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-git",
+    url = "https://github.com/petertriho/cmp-git"
+  },
+  ["cmp-npm"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-npm",
+    url = "https://github.com/David-Kunz/cmp-npm"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lsp-document-symbol"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp-document-symbol",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp-document-symbol"
+  },
+  ["cmp-nvim-lsp-signature-help"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp-signature-help",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
+  },
+  ["cmp-rg"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-rg",
+    url = "https://github.com/lukas-reineke/cmp-rg"
+  },
+  ["cmp-tmux"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-tmux",
+    url = "https://github.com/andersevenrud/cmp-tmux"
+  },
+  ["cmp-zsh"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/cmp-zsh",
+    url = "https://github.com/tamago324/cmp-zsh"
+  },
+  ["deol.nvim"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/deol.nvim",
+    url = "https://github.com/Shougo/deol.nvim"
+  },
+  ["fuzzy.nvim"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/fuzzy.nvim",
+    url = "https://github.com/tzachar/fuzzy.nvim"
   },
   harpoon = {
     loaded = true,
     path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  ["lsp-format.nvim"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/lsp-format.nvim",
+    url = "https://github.com/lukas-reineke/lsp-format.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
+  },
+  ["lspkind.nvim"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
+    url = "https://github.com/onsails/lspkind.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -108,6 +219,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["nvim-autopairs"] = {
+    config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -125,8 +242,9 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["packer.nvim"] = {
-    loaded = true,
-    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/opt/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   playground = {
@@ -138,6 +256,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -158,10 +281,28 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-vsnip"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/vim-vsnip",
+    url = "https://github.com/hrsh7th/vim-vsnip"
+  },
+  ["vim-vsnip-integ"] = {
+    loaded = true,
+    path = "/Users/noahlozevski/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ",
+    url = "https://github.com/hrsh7th/vim-vsnip-integ"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
