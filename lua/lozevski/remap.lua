@@ -23,12 +23,13 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+-- delete and skip register
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
--- This is going to get me cancelled
+-- Align control + c to esc
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
@@ -49,3 +50,11 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
+--[[ shortcuts for windows
+<Ctrl-W>+v       # Opens a new vertical split
+<Ctrl-W>+s       # Opens a new horizontal split
+<Ctrl-W>+c       # Closes a window
+<Ctrl-W>+o       # Makes current window the only one on screen and closes other windows
+<Ctrl-W>+h/j/k/l # Moves the cursor to left/bottom/top/right
+ ]]

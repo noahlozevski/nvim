@@ -7,7 +7,6 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
@@ -28,5 +27,51 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = ""
+
+vim.opt.showmatch = true        -- Highlight matching parenthesis
+vim.opt.clipboard = 'unnamedplus'         -- Copy/paste to system clipboard
+
+vim.opt.splitright = true       -- Vertical split to the right
+vim.opt.splitbelow = true       -- Horizontal split to the bottom
+vim.opt.ignorecase = true       -- Ignore case letters when search
+vim.opt.smartcase = true        -- Ignore lowercase for the whole pattern
+vim.opt.hidden = true           -- Enable background buffers
+vim.opt.history = 100           -- Remember N lines in history
+vim.opt.lazyredraw = true       -- Faster scrolling
+vim.opt.synmaxcol = 240         -- Max column for syntax highlight
+
+-- -- Disable builtin plugins
+local disabled_built_ins = {
+   "2html_plugin",
+   "getscript",
+   "getscriptPlugin",
+   "gzip",
+   "logipat",
+   "netrw",
+   "netrwPlugin",
+   "netrwSettings",
+   "netrwFileHandlers",
+   "matchit",
+   "tar",
+   "tarPlugin",
+   "rrhelper",
+   "spellfile_plugin",
+   "vimball",
+   "vimballPlugin",
+   "zip",
+   "zipPlugin",
+   "tutor",
+   "rplugin",
+   "synmenu",
+   "optwin",
+   "compiler",
+   "bugreport",
+   "ftplugin",
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+   vim.g["loaded_" .. plugin] = 1
+end
+
 

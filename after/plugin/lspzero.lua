@@ -83,10 +83,11 @@ end)
 lsp.setup()
 
 vim.diagnostic.config({
-    virtual_text = {
-        source = 'if_many',
-        prefix = '●',
-    },
+    -- virtual_text = {
+    --     source = 'if_many',
+    --     prefix = '●',
+    -- },
+    virtual_text = false,
     severity_sort = true,
 })
 

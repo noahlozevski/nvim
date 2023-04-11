@@ -1,0 +1,12 @@
+-- vim.keymap.set("n", "<C-P>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+-- vim.keymap.set("n", "<C-\>", "<cmd>lua require('fzf-lua').buffers()<CR>", { silent = true })
+-- vim.keymap.set("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+-- vim.keymap.set("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+-- vim.keymap.set("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+--
+vim.keymap.set('n', '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+-- vim.keymap.set('n', '<leader>ff', "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+vim.keymap.set('n', '<leader>fg', "<cmd>lua require('fzf-lua').git_files()<CR>", { silent = true })
+vim.keymap.set('n', '<leader>fl', "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })
+vim.keymap.set('n', '<leader>fb', "<cmd>lua require('fzf-lua').buffers()<CR>", { silent = true })
+vim.keymap.set('n', '<leader>fh', "<cmd>lua require('fzf-lua').help_tags()<CR>", { silent = true })

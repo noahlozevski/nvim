@@ -1,6 +1,6 @@
 -- Set up nvim-cmp.
 local cmp = require 'cmp'
--- local compare = require('cmp.config.compare')
+local compare = require('cmp.config.compare')
 
 -- Helpers for the matching methods
 local has_words_before = function()
@@ -55,6 +55,7 @@ cmp.setup({
                 -- Source
                 vim_item.menu = ({
                     buffer = "[Buffer]",
+                    fuzzy_buffer = "[Buffer]",
                     nvim_lsp = "[LSP]",
                     vsnip = "[VSnip]",
                     nvim_lua = "[Lua]",
@@ -79,22 +80,23 @@ cmp.setup({
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
-    -- sorting = {
-    --     -- Need this override for cmp fuzzy buffer
-    --     -- Need to do the same thing for fuzzy path if enabled
-    --     priority_weight = 2,
-    --     comparators = {
-    --         require('cmp_fuzzy_buffer.compare'),
-    --         compare.offset,
-    --         compare.exact,
-    --         compare.score,
-    --         compare.recently_used,
-    --         compare.kind,
-    --         compare.sort_text,
-    --         compare.length,
-    --         compare.order,
-    --     }
-    -- },
+    sorting = {
+        -- Need this override for cmp fuzzy buffer
+        -- Need to do the same thing for fuzzy path if enabled
+        priority_weight = 2,
+        comparators = {
+            require('cmp_fuzzy_buffer.compare'),
+            compare.offset,
+            compare.exact,
+            compare.score,
+            -- require("cmp-under-comparator").under,
+            compare.recently_used,
+            compare.kind,
+            compare.sort_text,
+            compare.length,
+            compare.order,
+        }
+    },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -141,7 +143,7 @@ cmp.setup({
         -- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help
         { name = 'nvim_lsp_signature_help' },
         -- { name = 'calc' }, cant get this to work but would be cool ???
-        -- { name = 'fuzzy_buffer' },
+        { name = 'fuzzy_buffer' },
         { name = 'zsh' },
         { name = 'tmux' },
         { name = 'emoji' },
@@ -158,14 +160,14 @@ cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
     }, {
-        { name = 'buffer' },
+        { name = 'fuzzy_buffer', keyword_length = 2 },
     })
 })
 
 cmp.setup.cmdline('?', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-        { name = 'buffer' }
+        { name = 'fuzzy_buffer', keyword_length = 2  }
     }
 })
 
@@ -173,7 +175,7 @@ cmp.setup.cmdline('/', {
     sources = cmp.config.sources({
         { name = 'nvim_lsp_document_symbol' }
     }, {
-        { name = 'buffer' }
+        { name = 'fuzzy_buffer', keyword_length = 2  }
     })
 })
 
@@ -181,7 +183,8 @@ cmp.setup.cmdline('/', {
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = 'async_path' }
+        { name = 'fuzzy_buffer', keyword_length = 2  },
+        { name = 'async_path' },
     }, {
         { name = 'cmdline' }
     })
