@@ -4,7 +4,8 @@
 -- vim.keymap.set("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 -- vim.keymap.set("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 --
-vim.keymap.set('n', '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+-- vim.keymap.set('n', '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+vim.keymap.set('n', '<C-p>', "<cmd>FZF<CR>", { silent = true })
 -- vim.keymap.set('n', '<leader>ff', "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 vim.keymap.set('n', '<leader>fg', "<cmd>lua require('fzf-lua').git_files()<CR>", { silent = true })
 vim.keymap.set('n', '<leader>fl', "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })

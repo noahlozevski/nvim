@@ -56,7 +56,7 @@ lsp.on_attach(function(client, bufnr)
 
     -- Asynchronously autoformat the file on save
     if vim.tbl_contains(allowed_format_servers, client.name) then
-        -- require('lsp-format').on_attach(client)
+        require('lsp-format').on_attach(client)
     end
 
     -- format the file
