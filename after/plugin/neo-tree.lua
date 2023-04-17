@@ -1,3 +1,18 @@
+require 'window-picker'.setup({
+    autoselect_one = true,
+    include_current = false,
+    filter_rules = {
+        -- filter using buffer options
+        bo = {
+            -- if the file type is one of following, the window will be ignored
+            filetype = { 'neo-tree', "neo-tree-popup", "notify" },
+            -- if the buffer type is one of following, the window will be ignored
+            buftype = { 'terminal', "quickfix" }
+        }
+    },
+    other_win_hl_color = '#e35e4f'
+})
+
 -- Unless you are still migrating, remove the deprecated commands from v1.x
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
@@ -18,9 +33,9 @@ require("neo-tree").setup({
         winbar = true,
         statusline = false
     },
-    close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+    close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
     popup_border_style = "rounded",
-    enable_git_status = false,
+    enable_git_status = true,
     enable_diagnostics = false,
     open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
     sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
@@ -86,7 +101,7 @@ require("neo-tree").setup({
     },
     window = {
         position = "left",
-        width = 40,
+        width = 30,
         mapping_options = {
             noremap = true,
             nowait = true,

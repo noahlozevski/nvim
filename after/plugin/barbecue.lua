@@ -1,4 +1,5 @@
 require("barbecue").setup({
+    theme = 'tokyonight',
     create_autocmd = false, -- prevent barbecue from updating itself automatically
     symbols = {
         ---Modification indicator.

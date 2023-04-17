@@ -1,2 +1,2 @@
-require("scrollbar").setup({
-})
+-- require("scrollbar").setup({
+-- })
