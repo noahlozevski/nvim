@@ -21,6 +21,10 @@ return require('packer').startup(function(use)
         'wbthomason/packer.nvim',
         opt = true
     }
+    use({
+        "jose-elias-alvarez/null-ls.nvim",
+        requires = { "nvim-lua/plenary.nvim" },
+    })
 
     use {
         'nvim-lualine/lualine.nvim',
