@@ -7,5 +7,7 @@ local sources = {
     null_ls.builtins.hover.dictionary
 }
 
+-- Keymappings
+vim.api.nvim_set_keymap('n', '<leader>da', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
 
 null_ls.setup({ sources = sources })
