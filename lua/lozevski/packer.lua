@@ -32,6 +32,14 @@ return require('packer').startup(function(use)
     }
 
     use {
+        "ThePrimeagen/refactoring.nvim",
+        requires = {
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-treesitter/nvim-treesitter" }
+        }
+    }
+
+    use {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
