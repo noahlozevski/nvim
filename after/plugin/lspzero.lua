@@ -87,7 +87,7 @@ vim.diagnostic.config({
     --     source = 'if_many',
     --     prefix = '●',
     -- },
-    virtual_text = false,
+    virtual_text = true,
     severity_sort = true,
 })
 

@@ -41,7 +41,6 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
@@ -69,7 +68,6 @@ return require('packer').startup(function(use)
 
     use {
         "nvim-neo-tree/neo-tree.nvim",
-        branch = "v2.x",
         requires = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim", {
             -- only needed if you want to use the commands with "_with_window_picker" suffix
             's1n7ax/nvim-window-picker',
@@ -92,6 +90,10 @@ return require('packer').startup(function(use)
         "folke/trouble.nvim",
         requires = "nvim-tree/nvim-web-devicons",
     }
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
 
     -- for comment toggling
     use {
@@ -137,6 +139,8 @@ return require('packer').startup(function(use)
 
     use { 'romgrk/barbar.nvim', requires = 'nvim-web-devicons' }
 
+    use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+
     -- cmp filter 'fuzzy_buffer'
     -- https://github.com/tzachar/cmp-fuzzy-buffer
     use {
@@ -156,7 +160,6 @@ return require('packer').startup(function(use)
     -- lsp server plugin hoster i think ????
     use {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
         requires = {                     -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
             {
