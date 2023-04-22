@@ -1,49 +1,55 @@
--- require("catppuccin").setup({
---     flavour = "mocha", -- latte, frappe, macchiato, mocha
---     background = {
---                     -- :h background
---         light = "frappe",
---         dark = "mocha"
---     },
---     transparent_background = true,
---     show_end_of_buffer = false, -- show the '~' characters after the end of buffers
---     term_colors = true,
---     dim_inactive = {
---         enabled = false,
---         shade = "dark",
---         percentage = 0.15
---     },
---     no_italic = false, -- Force no italic
---     no_bold = false, -- Force no bold
---     styles = {
---         comments = { "italic" },
---         conditionals = { "italic" },
---         loops = {},
---         functions = {},
---         keywords = {},
---         strings = {},
---         variables = {},
---         numbers = {},
---         booleans = {},
---         properties = {},
---         types = {},
---         operators = {}
---     },
---     color_overrides = {
---         all = {},
---         latte = {},
---         frappe = {},
---         macchiato = {},
---         mocha = {}
---     },
---     integrations = {
---         -- <module> = <boolean>
---         harpoon = true,
---         telescope = true,
---         treesitter = true,
---         treesitter_context = true,
---     }
--- })
+require("catppuccin").setup({
+    flavour = "latte", -- latte, frappe, macchiato, mocha
+    background = {
+        -- :h background
+        light = "frappe",
+        dark = "mocha"
+    },
+    transparent_background = false,
+    show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+    term_colors = true,
+    dim_inactive = {
+        enabled = false,
+        shade = "dark",
+        percentage = 0.15
+    },
+    no_italic = false, -- Force no italic
+    no_bold = false,   -- Force no bold
+    styles = {
+        comments = { "italic" },
+        conditionals = { "italic" },
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {}
+    },
+    color_overrides = {
+        all = {},
+        latte = {},
+        frappe = {},
+        macchiato = {},
+        mocha = {}
+    },
+    integrations = {
+        -- <module> = <boolean>
+        harpoon = true,
+        telescope = true,
+        treesitter = true,
+        treesitter_context = true,
+        barbar = true,
+        mason = true,
+        neotree = true,
+        cmp = true,
+        lsp_trouble = true
+    }
+})
+
 require("tokyonight").setup({
     -- your configuration comes here
     -- or leave it empty to use the default settings
@@ -68,6 +74,26 @@ require("tokyonight").setup({
     dim_inactive = false,             -- dims inactive windows
     lualine_bold = false,             -- When `true`, section headers in the lualine theme will be bold
 })
+
+local current = 0;
+function toggle_theme()
+    if current == 0 then
+        vim.cmd.colorscheme "tokyonight"
+    elseif current == 1 then
+        vim.cmd.colorscheme "catppuccin"
+    end
+    current = current + 1
+    if current == 2 then
+        current = 0
+    end
+end
+
+vim.keymap.set(
+    "",
+    "<leader>tt",
+    toggle_theme,
+    { desc = "Toggle theme" }
+)
 vim.cmd.colorscheme "tokyonight"
 -- vim.cmd.colorscheme "catppuccin"
 
@@ -75,7 +101,7 @@ vim.cmd.colorscheme "tokyonight"
 require('lualine').setup({
     options = {
         icons_enabled = true,
-        theme = 'tokyonight',
+        theme = 'catppuccin',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
