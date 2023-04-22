@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
         "jose-elias-alvarez/null-ls.nvim",
         requires = { "nvim-lua/plenary.nvim" },
     })
-
+    use 'kessejones/git-blame-line.nvim'
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons' }
@@ -54,15 +54,15 @@ return require('packer').startup(function(use)
     --     as = "catppuccin"
     -- })
 
-    use({
-        "utilyre/barbecue.nvim",
-        tag = "*",
-        requires = {
-            "SmiteshP/nvim-navic",
-            "nvim-tree/nvim-web-devicons",
-        },
-        after = "nvim-web-devicons",
-    })
+    -- use({
+    --     "utilyre/barbecue.nvim",
+    --     tag = "*",
+    --     requires = {
+    --         "SmiteshP/nvim-navic",
+    --         "nvim-tree/nvim-web-devicons",
+    --     },
+    --     after = "nvim-web-devicons",
+    -- })
 
     -- use 'nvim-tree/nvim-tree.lua'
 
@@ -139,7 +139,7 @@ return require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons' }
     }
 
-    use { 'romgrk/barbar.nvim', requires = 'nvim-web-devicons' }
+    -- use { 'romgrk/barbar.nvim', requires = 'nvim-web-devicons' }
 
     use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 

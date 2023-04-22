@@ -20,6 +20,7 @@ function toggleDiagnostics()
     end
 end
 
+toggleDiagnostics()
 -- keymap for toggling the lines
 vim.keymap.set(
     "",

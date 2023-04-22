@@ -42,7 +42,7 @@ require("catppuccin").setup({
         telescope = true,
         treesitter = true,
         treesitter_context = true,
-        barbar = true,
+        -- barbar = true,
         mason = true,
         neotree = true,
         cmp = true,
@@ -76,12 +76,15 @@ require("tokyonight").setup({
 })
 
 local current = 0;
+local currentTheme = 'tokyonight'
 function toggle_theme()
     if current == 0 then
-        vim.cmd.colorscheme "tokyonight"
+        currentTheme = 'tokyonight'
     elseif current == 1 then
-        vim.cmd.colorscheme "catppuccin"
+        currentTheme = "catppuccin"
     end
+
+    vim.cmd.colorscheme(currentTheme)
     current = current + 1
     if current == 2 then
         current = 0
@@ -94,47 +97,15 @@ vim.keymap.set(
     toggle_theme,
     { desc = "Toggle theme" }
 )
-vim.cmd.colorscheme "tokyonight"
--- vim.cmd.colorscheme "catppuccin"
+
+toggle_theme()
+-- function setupStatusBar()
+--
+-- end
 
 -- for status bar
-require('lualine').setup({
-    options = {
-        icons_enabled = true,
-        theme = 'catppuccin',
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
-        disabled_filetypes = {
-            statusline = {},
-            winbar = {},
-        },
-        ignore_focus = {},
-        always_divide_middle = true,
-        globalstatus = false,
-        refresh = {
-            statusline = 1000,
-            tabline = 1000,
-            winbar = 1000,
-        }
-    },
-    sections = {
-        lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'filename' },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
-        lualine_y = { 'progress' },
-        lualine_z = { 'location' }
-    },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { 'filename' },
-        lualine_x = { 'location' },
-        lualine_y = {},
-        lualine_z = {}
-    },
-    tabline = {},
-    winbar = {},
-    inactive_winbar = {},
-    extensions = {}
-})
+-- require('lualine').setup({
+--     options = {
+--         theme = 'tokyonight',
+--     },
+-- })

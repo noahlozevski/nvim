@@ -26,7 +26,7 @@ vim.opt.scrolloff = 12
 vim.opt.signcolumn = "no"
 vim.opt.isfname:append("@-@")
 
-vim.opt.updatetime = 50
+vim.opt.updatetime = 33
 
 vim.opt.colorcolumn = ""
 
@@ -81,3 +81,12 @@ end
 
 -- This enables the hover window automatically if the the cursor is anywhere in the line
 -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+--
+--
+--
+vim.cmd([[
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=350}
+augroup END
+]])

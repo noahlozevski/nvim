@@ -1,34 +1,34 @@
-require("barbecue").setup({
-    theme = 'catppuccin',
-    create_autocmd = false, -- prevent barbecue from updating itself automatically
-    symbols = {
-        ---Modification indicator.
-        ---
-        ---@type string
-        modified = "●",
-        ---Truncation indicator.
-        ---
-        ---@type string
-        ellipsis = "…",
-        ---Entry separator.
-        ---
-        ---@type string
-        separator = ">",
-    },
-    kinds = false
-})
-
-vim.api.nvim_create_autocmd({
-    "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
-    "BufWinEnter",
-    "CursorHold",
-    "InsertLeave",
-
-    -- include this if you have set `show_modified` to `true`
-    "BufModifiedSet",
-}, {
-    group = vim.api.nvim_create_augroup("barbecue.updater", {}),
-    callback = function()
-        require("barbecue.ui").update()
-    end,
-})
+-- require("barbecue").setup({
+--     theme = 'catppuccin',
+--     create_autocmd = false, -- prevent barbecue from updating itself automatically
+--     symbols = {
+--         ---Modification indicator.
+--         ---
+--         ---@type string
+--         modified = "●",
+--         ---Truncation indicator.
+--         ---
+--         ---@type string
+--         ellipsis = "…",
+--         ---Entry separator.
+--         ---
+--         ---@type string
+--         separator = ">",
+--     },
+--     kinds = false
+-- })
+--
+-- vim.api.nvim_create_autocmd({
+--     "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
+--     "BufWinEnter",
+--     "CursorHold",
+--     "InsertLeave",
+--
+--     -- include this if you have set `show_modified` to `true`
+--     "BufModifiedSet",
+-- }, {
+--     group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+--     callback = function()
+--         require("barbecue.ui").update()
+--     end,
+-- })

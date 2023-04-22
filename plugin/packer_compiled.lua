@@ -85,18 +85,6 @@ _G.packer_plugins = {
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["barbar.nvim"] = {
-    loaded = true,
-    path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/barbar.nvim",
-    url = "https://github.com/romgrk/barbar.nvim"
-  },
-  ["barbecue.nvim"] = {
-    load_after = {},
-    loaded = true,
-    needs_bufread = false,
-    path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/opt/barbecue.nvim",
-    url = "https://github.com/utilyre/barbecue.nvim"
-  },
   catppuccin = {
     loaded = true,
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/catppuccin",
@@ -217,6 +205,11 @@ _G.packer_plugins = {
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/fzf-lua",
     url = "https://github.com/ibhagwan/fzf-lua"
   },
+  ["git-blame-line.nvim"] = {
+    loaded = true,
+    path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/git-blame-line.nvim",
+    url = "https://github.com/kessejones/git-blame-line.nvim"
+  },
   harpoon = {
     loaded = true,
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/harpoon",
@@ -292,11 +285,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
-  },
-  ["nvim-navic"] = {
-    loaded = true,
-    path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/nvim-navic",
-    url = "https://github.com/SmiteshP/nvim-navic"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -392,19 +380,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
--- Load plugins in order defined by `after`
-time([[Sequenced loading]], true)
-vim.cmd [[ packadd nvim-web-devicons ]]
-vim.cmd [[ packadd barbecue.nvim ]]
-time([[Sequenced loading]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

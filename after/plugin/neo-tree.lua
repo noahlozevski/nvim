@@ -30,8 +30,8 @@ vim.fn.sign_define("DiagnosticSignHint",
 
 require("neo-tree").setup({
     source_selector = {
-        winbar = true,
-        statusline = false
+        winbar = false,
+        statusline = true
     },
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
     popup_border_style = "rounded",
