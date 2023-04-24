@@ -21,6 +21,14 @@ return require('packer').startup(function(use)
         'wbthomason/packer.nvim',
         opt = true
     }
+    use 'github/copilot.vim'
+    use {
+        "folke/zen-mode.nvim",
+        config = function()
+            require("zen-mode").setup({})
+        end
+    }
+
     use({
         "jose-elias-alvarez/null-ls.nvim",
         requires = { "nvim-lua/plenary.nvim" },
@@ -44,7 +52,7 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    use 'mg979/vim-visual-multi'
+    -- use 'mg979/vim-visual-multi'
     use 'ThePrimeagen/vim-be-good'
     -- use "petertriho/nvim-scrollbar"
 
@@ -95,7 +103,7 @@ return require('packer').startup(function(use)
         run = function() vim.fn["mkdp#util#install"]() end,
     })
 
-    use "lukas-reineke/indent-blankline.nvim"
+    -- use "lukas-reineke/indent-blankline.nvim"
 
     use { "catppuccin/nvim", as = "catppuccin" }
 

@@ -44,7 +44,7 @@ local completion_source_icons = {
 
 cmp.setup({
     experimental = {
-        ghost_text = true,
+        ghost_text = false,
     },
     formatting = {
         format = function(entry, vim_item)
@@ -167,7 +167,7 @@ cmp.setup.filetype('gitcommit', {
 cmp.setup.cmdline('?', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-        { name = 'fuzzy_buffer', keyword_length = 2  }
+        { name = 'fuzzy_buffer', keyword_length = 2 }
     }
 })
 
@@ -175,7 +175,7 @@ cmp.setup.cmdline('/', {
     sources = cmp.config.sources({
         { name = 'nvim_lsp_document_symbol' }
     }, {
-        { name = 'fuzzy_buffer', keyword_length = 2  }
+        { name = 'fuzzy_buffer', keyword_length = 2 }
     })
 })
 
@@ -183,7 +183,7 @@ cmp.setup.cmdline('/', {
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = 'fuzzy_buffer', keyword_length = 2  },
+        { name = 'fuzzy_buffer', keyword_length = 2 },
         { name = 'async_path' },
     }, {
         { name = 'cmdline' }

@@ -2,8 +2,6 @@ require("lsp_lines").setup({
     virtual_lines = false -- start disabled
 })
 
-
-
 local current = 0;
 function toggleDiagnostics()
     if current == 0 then
