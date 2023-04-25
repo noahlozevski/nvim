@@ -1,4 +1,4 @@
-local lsp = require('lsp-zero').preset('recommended')
+local lsp = require('lsp-zero').preset({})
 
 lsp.ensure_installed({
     -- add more servers / languages
@@ -80,7 +80,6 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-lsp.setup()
 
 vim.diagnostic.config({
     -- virtual_text = {
@@ -91,6 +90,8 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 
+-- Fix Undefined global 'vim'
+require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 
 -- Set up lspconfig for each server
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -99,3 +100,5 @@ for i, server in ipairs(allowed_format_servers) do
         capabilities = capabilities
     }
 end
+
+lsp.setup()

@@ -135,23 +135,27 @@ cmp.setup({
         end, { "i", "s" }),
     }),
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'vsnip' }, -- For vsnip users.
-        -- { name = 'luasnip' }, -- For luasnip users.
-        -- { name = 'ultisnips' }, -- For ultisnips users.
-        -- { name = 'snippy' }, -- For snippy users.
-        { name = 'nvim_lsp_signature_help' },
-        -- { name = 'calc' }, cant get this to work but would be cool ???
-        { name = 'fuzzy_buffer' },
-        { name = 'zsh' },
-        -- { name = 'tmux' },
-        -- { name = 'emoji' },
-        { name = 'nvim_lua' },
-
-    }, {
-        -- buffer results usually arent as helpful
-        { name = 'buffer', keyword_length = 2 },
-    })
+            { name = 'nvim_lsp' },
+            { name = 'vsnip' }, -- For vsnip users.
+            -- { name = 'luasnip' }, -- For luasnip users.
+            -- { name = 'ultisnips' }, -- For ultisnips users.
+            -- { name = 'snippy' }, -- For snippy users.
+            -- { name = 'calc' }, cant get this to work but would be cool ???
+            -- { name = 'tmux' },
+            -- { name = 'emoji' },
+            { name = 'nvim_lua' },
+        }, {
+            -- buffer results usually arent as helpful
+            -- { name = 'buffer' },
+            { name = 'fuzzy_buffer', keyword_length = 2 },
+        },
+        {
+            { name = 'nvim_lsp_signature_help' },
+        },
+        {
+            { name = 'async_path' },
+        }
+    )
 })
 
 -- Set configuration for specific filetype.
@@ -174,7 +178,7 @@ cmp.setup.cmdline('/', {
     sources = cmp.config.sources({
         { name = 'nvim_lsp_document_symbol' }
     }, {
-        { name = 'fuzzy_buffer', keyword_length = 2 }
+        { name = 'fuzzy_buffer' }
     })
 })
 
@@ -182,9 +186,11 @@ cmp.setup.cmdline('/', {
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = 'fuzzy_buffer', keyword_length = 2 },
+        { name = 'cmdline' },
+        { name = 'fuzzy_buffer',  keyword_length = 2 },
         { name = 'async_path' },
-    }, {
-        { name = 'cmdline' }
+        { name = 'zsh', },
+        { name = "cmdline_history" }
+
     })
 })
