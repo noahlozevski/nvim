@@ -98,12 +98,12 @@ return require('packer').startup(function(use)
         "folke/trouble.nvim",
         requires = "nvim-tree/nvim-web-devicons",
     }
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-    })
+    -- use({
+    --     "iamcco/markdown-preview.nvim",
+    --     run = function() vim.fn["mkdp#util#install"]() end,
+    -- })
 
-    -- use "lukas-reineke/indent-blankline.nvim"
+    use "lukas-reineke/indent-blankline.nvim"
 
     use { "catppuccin/nvim", as = "catppuccin" }
 
@@ -168,34 +168,41 @@ return require('packer').startup(function(use)
     }
 
     -- tmux
-    use { 'andersevenrud/cmp-tmux' }
+    -- use { 'andersevenrud/cmp-tmux' }
     -- lsp server plugin hoster i think ????
     use {
         'VonHeikemen/lsp-zero.nvim',
-        requires = {                     -- LSP Support
+        requires = {               -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
             {
-                -- Optional
                 'williamboman/mason.nvim',
                 run = function()
                     pcall(vim.cmd, 'MasonUpdate')
                 end
-            }, { 'williamboman/mason-lspconfig.nvim' },                        -- Optional
+            }, { 'williamboman/mason-lspconfig.nvim' }, -- Optional
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },                                            -- Required
-            { 'hrsh7th/cmp-nvim-lsp' },                                        -- Required
-            { 'L3MON4D3/LuaSnip' },                                            -- Required
-            { 'lukas-reineke/lsp-format.nvim' },                               -- Required for async format on save
-            { 'lukas-reineke/cmp-under-comparator' }, { 'hrsh7th/vim-vsnip' }, -- required for auto complete snips
-            { 'hrsh7th/vim-vsnip-integ' },                                     -- required for auto compelete snips
-            { 'hrsh7th/cmp-buffer' }, { 'hrsh7th/cmp-path' }, { 'hrsh7th/cmp-cmdline' },
+            { 'hrsh7th/nvim-cmp' },               -- Required
+            { 'hrsh7th/cmp-nvim-lsp' },           -- Required
+            { 'L3MON4D3/LuaSnip' },               -- Required
+            { 'lukas-reineke/lsp-format.nvim' },  -- Required for async format on save
+            { 'lukas-reineke/cmp-under-comparator' },
+            { 'hrsh7th/vim-vsnip' },              -- required for auto complete snips
+            { 'hrsh7th/vim-vsnip-integ' },        -- required for auto compelete snips
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'hrsh7th/cmp-cmdline' },
             { 'hrsh7th/cmp-nvim-lsp-signature-help' },
-            { 'hrsh7th/cmp-calc' }, { 'hrsh7th/cmp-nvim-lsp-document-symbol' }, { 'FelipeLema/cmp-async-path' },
+            -- { 'hrsh7th/cmp-calc' },
+            { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
+            { 'FelipeLema/cmp-async-path' },
             { 'dmitmel/cmp-cmdline-history' }, -- https://github.com/lukas-reineke/cmp-rg
-            { "lukas-reineke/cmp-rg" },        -- ripgrep source for cmp, completes any text in workspace
+            { "lukas-reineke/cmp-rg" },  -- ripgrep source for cmp, completes any text in workspace
+            { 'hrsh7th/cmp-nvim-lua' },
+            { "tamago324/cmp-zsh" },
             -- Zsh autocompletions
-            { "tamago324/cmp-zsh" }, { "Shougo/deol.nvim" }, { 'hrsh7th/cmp-emoji' }, { 'hrsh7th/cmp-nvim-lua' },
-            { 'lukas-reineke/cmp-under-comparator' } }
+            -- { "Shougo/deol.nvim" },
+            -- { 'hrsh7th/cmp-emoji' },
+        }
     }
     use {
         'David-Kunz/cmp-npm',

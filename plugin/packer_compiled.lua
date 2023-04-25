@@ -100,11 +100,6 @@ _G.packer_plugins = {
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
   },
-  ["cmp-calc"] = {
-    loaded = true,
-    path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/cmp-calc",
-    url = "https://github.com/hrsh7th/cmp-calc"
-  },
   ["cmp-cmdline"] = {
     loaded = true,
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
@@ -114,11 +109,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/cmp-cmdline-history",
     url = "https://github.com/dmitmel/cmp-cmdline-history"
-  },
-  ["cmp-emoji"] = {
-    loaded = true,
-    path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/cmp-emoji",
-    url = "https://github.com/hrsh7th/cmp-emoji"
   },
   ["cmp-fuzzy-buffer"] = {
     loaded = true,
@@ -170,11 +160,6 @@ _G.packer_plugins = {
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/cmp-rg",
     url = "https://github.com/lukas-reineke/cmp-rg"
   },
-  ["cmp-tmux"] = {
-    loaded = true,
-    path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/cmp-tmux",
-    url = "https://github.com/andersevenrud/cmp-tmux"
-  },
   ["cmp-under-comparator"] = {
     loaded = true,
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/cmp-under-comparator",
@@ -190,11 +175,14 @@ _G.packer_plugins = {
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/copilot.vim",
     url = "https://github.com/github/copilot.vim"
   },
+<<<<<<< HEAD
   ["deol.nvim"] = {
     loaded = true,
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/deol.nvim",
     url = "https://github.com/Shougo/deol.nvim"
   },
+=======
+>>>>>>> bac6327 (remove neotree on start + switch fuzzy finder)
   ["fuzzy.nvim"] = {
     loaded = true,
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/fuzzy.nvim",
@@ -220,6 +208,11 @@ _G.packer_plugins = {
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/Users/nlozevsk/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
   ["lsp-format.nvim"] = {
     loaded = true,
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/lsp-format.nvim",
@@ -244,11 +237,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  ["markdown-preview.nvim"] = {
-    loaded = true,
-    path = "/local/home/nlozevsk/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
-    url = "https://github.com/iamcco/markdown-preview.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,

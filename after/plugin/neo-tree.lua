@@ -31,12 +31,12 @@ vim.fn.sign_define("DiagnosticSignHint",
 require("neo-tree").setup({
     source_selector = {
         winbar = false,
-        statusline = true
+        statusline = false
     },
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
     popup_border_style = "rounded",
     enable_git_status = true,
-    enable_diagnostics = true,
+    enable_diagnostics = false,
     open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
     sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
     default_component_configs = {
@@ -239,3 +239,5 @@ require("neo-tree").setup({
 
 -- Opens and focuses neotree or closes it
 vim.cmd([[nnoremap \ :Neotree focus toggle<cr>]])
+
+vim.cmd("NeoTreeClose")

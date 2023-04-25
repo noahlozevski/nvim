@@ -140,13 +140,12 @@ cmp.setup({
         -- { name = 'luasnip' }, -- For luasnip users.
         -- { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
-        -- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help
         { name = 'nvim_lsp_signature_help' },
         -- { name = 'calc' }, cant get this to work but would be cool ???
         { name = 'fuzzy_buffer' },
         { name = 'zsh' },
-        { name = 'tmux' },
-        { name = 'emoji' },
+        -- { name = 'tmux' },
+        -- { name = 'emoji' },
         { name = 'nvim_lua' },
 
     }, {
