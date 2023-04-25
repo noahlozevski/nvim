@@ -28,7 +28,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = ""
 
 vim.opt.showmatch = true          -- Highlight matching parenthesis
 vim.opt.clipboard = 'unnamedplus' -- Copy/paste to system clipboard
