@@ -114,14 +114,14 @@ end
 vim.opt.background = "dark"
 
 local themers = {
-    startRESETTTTT,
-    startCatppuccin,
     startRosePine,
+    startCatppuccin,
     startAurora,
     startMoonfly,
     startNightfly,
     startOxocarbon,
     startTokyoNight,
+    startRESETTTTT,
 }
 
 local current = 0;
@@ -134,6 +134,7 @@ function toggle_theme()
 end
 
 toggle_theme()
+
 local color = "dark"
 function toggle_light_dark()
     if color == "dark" then

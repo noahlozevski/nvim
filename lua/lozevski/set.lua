@@ -42,6 +42,9 @@ vim.opt.history = 100             -- Remember N lines in history
 vim.opt.lazyredraw = true         -- Faster scrolling
 vim.opt.synmaxcol = 240           -- Max column for syntax highlight
 
+-- disable netrw banner
+vim.g.netrw_banner = 0
+
 -- -- Disable builtin plugins
 local disabled_built_ins = {
     "2html_plugin",
