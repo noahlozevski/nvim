@@ -15,6 +15,7 @@ return {
     },
 
     'ThePrimeagen/vim-be-good',
+    'nvim-lua/plenary.nvim',
 
     -- Themes
     { 'rose-pine/neovim',           name = 'rose-pine' },
@@ -28,12 +29,4 @@ return {
     },
     'nyoom-engineering/oxocarbon.nvim',
 
-
-    {
-        'nvim-treesitter/playground',
-        dependencies = {
-            { 'nvim-treesitter/nvim-treesitter'}
-        }
-    },
-    'nvim-lua/plenary.nvim',
 }

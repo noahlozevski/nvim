@@ -2,10 +2,10 @@ local lsp = require('lsp-zero').preset({})
 
 lsp.ensure_installed({
     -- add more servers / languages
-    -- 'tsserver',
-    -- 'eslint',
-    -- 'rust_analyzer',
-    -- 'lua_ls',
+    'tsserver',
+    'eslint',
+    'rust_analyzer',
+    'lua_ls',
 })
 
 lsp.nvim_workspace()
@@ -38,16 +38,18 @@ lsp.set_preferences({
 
 -- These languages will be formatted on save + will be loaded on start
 local allowed_format_servers = {
-    'tsserver',
-    'eslint',
+    -- 'tsserver',
+    -- 'eslint',
     'rust_analyzer',
-    'lua_ls'
+    'lua_ls',
+    'null-ls'
+    -- 'prettier',
 }
 local function allow_format(servers)
     return function(client) return vim.tbl_contains(servers, client.name) end
 end
 
-lsp.on_attach(function(client, bufnr)
+local function on_attach(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
     lsp.default_keymaps({ buffer = bufnr })
@@ -79,8 +81,9 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-end)
+end
 
+lsp.on_attach = on_attach
 
 vim.diagnostic.config({
     -- virtual_text = {
@@ -94,13 +97,32 @@ vim.diagnostic.config({
 -- Set up lspconfig for each server
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
+local configured_servers = {
+    'tsserver',
+    'eslint',
+    'rust_analyzer',
+    'lua_ls',
+    -- 'null-ls',
+}
 
-for i, server in ipairs(allowed_format_servers) do
+for i, server in ipairs(configured_servers) do
     lspconfig[server].setup {
+        on_attach = on_attach,
         capabilities = capabilities
     }
 end
 
+lspconfig.tsserver.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+}
+
+lspconfig.eslint.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+}
 -- Fixes the undefined vim global annoyance
 lspconfig.lua_ls.setup {
     settings = {
@@ -109,6 +131,7 @@ lspconfig.lua_ls.setup {
                 -- Get the language server to recognize the `vim` global
                 globals = {
                     'vim',
+                    'augroup',
                     'require'
                 },
             },
@@ -119,4 +142,8 @@ lspconfig.lua_ls.setup {
     },
 }
 
+-- require("lspconfig")["null-ls"].setup({})
+
 lsp.setup()
+
+

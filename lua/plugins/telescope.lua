@@ -14,6 +14,9 @@ return {
                 },
                 border = true,
                 sorting_strategy = "ascending",
+                path_display = {
+                    "smart",
+                },
             },
         })
         local builtin = require('telescope.builtin')
