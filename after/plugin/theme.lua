@@ -93,7 +93,55 @@ end
 
 function startRosePine()
     require('rose-pine').setup({
-        disable_background = true
+        --- @usage 'auto'|'main'|'moon'|'dawn'
+        variant = 'moon',
+        --- @usage 'main'|'moon'|'dawn'
+        dark_variant = 'moon',
+        bold_vert_split = false,
+        dim_nc_background = false,
+        disable_background = true,
+        disable_float_background = true,
+        disable_italics = true,
+        --- @usage string hex value or named color from rosepinetheme.com/palette
+        groups = {
+            -- background = 'base',
+            -- background_nc = '_experimental_nc',
+            -- panel = 'surface',
+            -- panel_nc = 'base',
+            -- border = 'highlight_med',
+            -- comment = 'muted',
+            -- link = 'iris',
+            -- punctuation = 'subtle',
+            -- error = 'love',
+            -- hint = 'iris',
+            -- info = 'foam',
+            -- warn = 'gold',
+            -- headings = {
+            --     h1 = 'iris',
+            --     h2 = 'foam',
+            --     h3 = 'rose',
+            --     h4 = 'gold',
+            --     h5 = 'pine',
+            --     h6 = 'foam',
+            -- }
+            -- -- or set all headings at once
+            -- -- headings = 'subtle'
+        },
+        -- Change specific vim highlight groups
+        -- https://github.com/rose-pine/neovim/wiki/Recipes
+        highlight_groups = {
+            -- ColorColumn = { bg = 'rose' },
+            -- Blend colours against the "base" background
+            CursorLine = { bg = 'foam', blend = 10 },
+            StatusLine = { fg = "love", bg = "love", blend = 10 },
+            StatusLineNC = { fg = "subtle", bg = "surface" },
+            TelescopeBorder = { fg = "highlight_high", bg = "none" },
+            TelescopeNormal = { bg = "none" },
+            TelescopePromptNormal = { bg = "base" },
+            TelescopeResultsNormal = { fg = "subtle", bg = "none" },
+            TelescopeSelection = { fg = "text", bg = "base" },
+            TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
+        }
     })
     vim.cmd.colorscheme("rose-pine")
 end
@@ -133,8 +181,6 @@ function toggle_theme()
     end
 end
 
-toggle_theme()
-
 local color = "dark"
 function toggle_light_dark()
     if color == "dark" then
@@ -152,6 +198,7 @@ vim.keymap.set(
     toggle_light_dark,
     { desc = "Toggle light / dark mode" }
 )
+
 vim.keymap.set(
     "",
     "<leader>tt",
@@ -159,14 +206,5 @@ vim.keymap.set(
     { desc = "Toggle theme" }
 )
 
--- toggle_theme()
--- function setupStatusBar()
---
--- end
-
--- for status bar
--- require('lualine').setup({
---     options = {
---         theme = 'tokyonight',
---     },
--- })
+-- start default / first theme
+themers[1]()

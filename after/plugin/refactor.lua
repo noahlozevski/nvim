@@ -20,6 +20,7 @@ vim.api.nvim_set_keymap("n", "<leader>rbf", [[ <Cmd>lua require('refactoring').r
 -- Inline variable can also pick up the identifier currently under the cursor without visual mode
 vim.api.nvim_set_keymap("n", "<leader>ri", [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
     { noremap = true, silent = true, expr = false })
+
 -- load refactoring Telescope extension
 require("telescope").load_extension("refactoring")
 

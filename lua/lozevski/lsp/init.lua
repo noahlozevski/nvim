@@ -1,0 +1,1 @@
+require('lozevski.lsp.config')

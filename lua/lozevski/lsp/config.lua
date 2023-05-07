@@ -2,29 +2,29 @@ local lsp = require('lsp-zero').preset({})
 
 lsp.ensure_installed({
     -- add more servers / languages
-    'tsserver',
-    'eslint',
-    'rust_analyzer',
-    'lua_ls',
+    -- 'tsserver',
+    -- 'eslint',
+    -- 'rust_analyzer',
+    -- 'lua_ls',
 })
 
 lsp.nvim_workspace()
 
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    -- ["<C-Space>"] = cmp.mapping.complete(),
-})
+-- local cmp = require('cmp')
+-- local cmp_select = { behavior = cmp.SelectBehavior.Select }
+-- local cmp_mappings = lsp.defaults.cmp_mappings({
+--     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+--     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+--     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+--     -- ["<C-Space>"] = cmp.mapping.complete(),
+-- })
 
 -- cmp_mappings['<Tab>'] = nil
 -- cmp_mappings['<S-Tab>'] = nil
 
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
+-- lsp.setup_nvim_cmp({
+--     mapping = cmp_mappings
+-- })
 
 lsp.set_preferences({
     suggest_lsp_servers = true,
@@ -36,6 +36,7 @@ lsp.set_preferences({
     }
 })
 
+-- These languages will be formatted on save + will be loaded on start
 local allowed_format_servers = {
     'tsserver',
     'eslint',
@@ -62,7 +63,7 @@ lsp.on_attach(function(client, bufnr)
     -- format the file
     vim.keymap.set({ 'n', 'x' }, 'gq', function()
         vim.lsp.buf.format({
-            async = false,
+            async = true,
             timeout_ms = 10000,
             filter = allow_format(allowed_format_servers)
         })
@@ -90,15 +91,32 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 
--- Fix Undefined global 'vim'
-require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
 -- Set up lspconfig for each server
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lspconfig = require('lspconfig')
+
 for i, server in ipairs(allowed_format_servers) do
-    require('lspconfig')[server].setup {
+    lspconfig[server].setup {
         capabilities = capabilities
     }
 end
+
+-- Fixes the undefined vim global annoyance
+lspconfig.lua_ls.setup {
+    settings = {
+        Lua = {
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {
+                    'vim',
+                    'require'
+                },
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+}
 
 lsp.setup()

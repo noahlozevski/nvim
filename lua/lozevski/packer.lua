@@ -1,223 +1,203 @@
--- Check if packer exists, if not, then install
-if not pcall(vim.cmd, [[packadd packer.nvim]]) then
-    if vim.fn.input("Install packer? (y)") ~= "y" then
-        return
-    end
-
-    local install_dir = string.format('%s/site/pack/packer/opt/', vim.fn.stdpath('data'))
-
-    vim.fn.mkddir(install_dir, 'p')
-
-    print(vim.fn.system(string.format('git clone --depth 1 %s %s', 'https://github.com/wbthomason/packer.nvim',
-        install_dir .. '/packer.nvim')))
-    return
-end
-
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use {
-        'wbthomason/packer.nvim',
-        opt = true
-    }
-    use 'github/copilot.vim'
-    use {
-        "folke/zen-mode.nvim",
-        config = function()
-            require("zen-mode").setup({})
-        end
-    }
-
-    use({
-        "jose-elias-alvarez/null-ls.nvim",
-        requires = { "nvim-lua/plenary.nvim" },
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
     })
-    use 'kessejones/git-blame-line.nvim'
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons' }
-    }
+end
+vim.opt.rtp:prepend(lazypath)
 
-    use {
+-- Lazy needs map leader set before loading plugins
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+require('lazy').setup({
+    'github/copilot.vim',
+    {
+        'dstein64/vim-startuptime',
+        cmd = 'StartupTime',
+        init = function()
+            vim.g.startuptime_tries = 10
+        end
+    },
+
+    {
+        "folke/zen-mode.nvim",
+        event = "VeryLazy"
+    },
+
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
+    'kessejones/git-blame-line.nvim',
+
+    {
         "ThePrimeagen/refactoring.nvim",
-        requires = {
+        dependencies = {
             { "nvim-lua/plenary.nvim" },
             { "nvim-treesitter/nvim-treesitter" }
         }
-    }
+    },
 
-    use {
+    {
         'nvim-telescope/telescope.nvim',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
-
-    -- use 'mg979/vim-visual-multi'
-    use 'ThePrimeagen/vim-be-good'
-    -- use "petertriho/nvim-scrollbar"
-
-    use({ 'rose-pine/neovim', as = 'rose-pine' })
-    use { "bluz71/vim-nightfly-colors", as = "nightfly" }
-    use { "bluz71/vim-moonfly-colors", as = "moonfly" }
-    use 'folke/tokyonight.nvim'
-    use 'ray-x/aurora'
-    -- use({
-    --     "catppuccin/nvim",
-    --     as = "catppuccin"
-    -- })
-
-    -- use({
-    --     "utilyre/barbecue.nvim",
-    --     tag = "*",
-    --     requires = {
-    --         "SmiteshP/nvim-navic",
-    --         "nvim-tree/nvim-web-devicons",
-    --     },
-    --     after = "nvim-web-devicons",
-    -- })
-
-    -- use 'nvim-tree/nvim-tree.lua'
-
-    use {
-        "nvim-neo-tree/neo-tree.nvim",
-        requires = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim", {
-            -- only needed if you want to use the commands with "_with_window_picker" suffix
-            's1n7ax/nvim-window-picker',
-            tag = "v1.*"
-        } }
-    }
-
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
-    use 'nvim-treesitter/playground'
-
-    use 'nvim-lua/plenary.nvim'
-    use 'ThePrimeagen/harpoon'
-    use 'mbbill/undotree'
-    use 'tpope/vim-fugitive'
-
-    use {
-        "folke/trouble.nvim",
-        requires = "nvim-tree/nvim-web-devicons",
-    }
-    -- use({
-    --     "iamcco/markdown-preview.nvim",
-    --     run = function() vim.fn["mkdp#util#install"]() end,
-    -- })
-
-    use "lukas-reineke/indent-blankline.nvim"
-
-    use { "catppuccin/nvim", as = "catppuccin" }
-
-    use 'nyoom-engineering/oxocarbon.nvim'
-
-    -- for comment toggling
-    use {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    }
-
-    -- Adds virtual lines for diagnostics
-    use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
-
-    -- Completion plugins
-    -- Auto inserts parathensis / brackets
-    use {
-        "windwp/nvim-autopairs",
-        config = function()
-            require("nvim-autopairs").setup {}
-        end
-    }
-    -- for icons in completion menu
-    use 'onsails/lspkind.nvim'
-
-    -- for git
-    use({
-        "petertriho/cmp-git",
-        requires = "nvim-lua/plenary.nvim"
-    })
-    use {
+        dependencies = {
+            { 'nvim-lua/plenary.nvim' },
+            { "tsakirist/telescope-lazy.nvim" },
+        }
+    },
+    -- Add fzf support to telescope
+    {
         'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'make'
-    }
+        build = 'make'
+    },
+
+    -- 'mg979/vim-visual-multi',
+    'ThePrimeagen/vim-be-good',
+    -- "petertriho/nvim-scrollbar"
+
+    -- Themes
+    { 'rose-pine/neovim',           name = 'rose-pine' },
+    { "bluz71/vim-nightfly-colors", name = "nightfly" },
+    { "bluz71/vim-moonfly-colors",  name = "moonfly" },
+    'folke/tokyonight.nvim',
+    'ray-x/aurora',
+    {
+        "catppuccin/nvim",
+        name = "catppuccin"
+    },
+    'nyoom-engineering/oxocarbon.nvim',
+
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim" },
+        keys = {
+            { "\\", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+
+        },
+        config = function()
+            require('lozevski.neo-tree')
+        end,
+    },
+
+    {
+        'nvim-treesitter/nvim-treesitter',
+        build = ':TSUpdate'
+    },
+    'nvim-treesitter/playground',
+
+    'nvim-lua/plenary.nvim',
+    'ThePrimeagen/harpoon',
+    'mbbill/undotree',
+    'tpope/vim-fugitive',
+
+    "lukas-reineke/indent-blankline.nvim",
+    --
+    --
+    --
+    -- for comment toggling
+    {
+        'numToStr/Comment.nvim',
+    },
+    --
+    -- Adds virtual lines with additional height for diagnostics
+    { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' },
+
     -- fzf dep
-    use {
-        'junegunn/fzf',
-        run = './install --bin'
-    }
+    -- {
+    --     'junegunn/fzf',
+    --     build = './install --bin'
+    -- },
     -- actual fzf integ
-    use {
-        'ibhagwan/fzf-lua',
-        requires = { 'nvim-tree/nvim-web-devicons' }
-    }
+    -- {
+    --     'ibhagwan/fzf-lua',
+    --     dependencies = { 'nvim-tree/nvim-web-devicons' }
+    -- },
 
-    -- use { 'romgrk/barbar.nvim', requires = 'nvim-web-devicons' }
-
-    use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
-
-    -- cmp filter 'fuzzy_buffer'
-    -- https://github.com/tzachar/cmp-fuzzy-buffer
-    use {
-        'tzachar/cmp-fuzzy-buffer',
-        requires = { 'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim' }
-    }
-
-    -- cmp filter 'fuzzy_path'
-    -- https://github.com/tzachar/cmp-fuzzy-path
-    use {
-        'tzachar/cmp-fuzzy-path',
-        requires = { 'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim' }
-    }
-
-    -- tmux
-    -- use { 'andersevenrud/cmp-tmux' }
-    -- lsp server plugin hoster i think ????
-    use {
+    -- LSP / Completion
+    {
         'VonHeikemen/lsp-zero.nvim',
-        requires = {                     -- LSP Support
-            { 'neovim/nvim-lspconfig' }, -- Required
-            {
-                'williamboman/mason.nvim',
-                run = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end
-            }, { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },                     -- Required
-            { 'hrsh7th/cmp-nvim-lsp' },                 -- Required
-            { 'L3MON4D3/LuaSnip' },                     -- Required
-            { 'lukas-reineke/lsp-format.nvim' },        -- Required for async format on save
-            { 'lukas-reineke/cmp-under-comparator' },
-            { 'hrsh7th/vim-vsnip' },                    -- required for auto complete snips
-            { 'hrsh7th/vim-vsnip-integ' },              -- required for auto compelete snips
+        lazy = true,
+        branch = 'v2.x',
+        config = function()
+            require('lsp-zero').preset({})
+        end
+    },
+
+    {
+        'hrsh7th/nvim-cmp',
+        -- TODO: figure out issues with the eventing, cant get everything to load right lazily
+        -- event = "InsertEnter",
+        dependencies = {
+            { 'L3MON4D3/LuaSnip' }, -- Required
+            -- { 'lukas-reineke/cmp-under-comparator' },
             { 'hrsh7th/cmp-buffer' },
             { 'hrsh7th/cmp-path' },
             { 'hrsh7th/cmp-cmdline' },
-            { 'hrsh7th/cmp-nvim-lsp-signature-help' },
             -- { 'hrsh7th/cmp-calc' },
-            { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
             { 'FelipeLema/cmp-async-path' },
             { 'dmitmel/cmp-cmdline-history' }, -- https://github.com/lukas-reineke/cmp-rg
             { "lukas-reineke/cmp-rg" },        -- ripgrep source for cmp, completes any text in workspace
             { 'hrsh7th/cmp-nvim-lua' },
             { "tamago324/cmp-zsh" },
+            { 'hrsh7th/vim-vsnip' },       -- required for auto complete snips
+            { 'hrsh7th/vim-vsnip-integ' }, -- required for auto compelete snips
+            -- {
+            --     'David-Kunz/cmp-npm',
+            --     dependencies = { 'nvim-lua/plenary.nvim' }
+            -- },
+            {
+                'tzachar/cmp-fuzzy-buffer',
+                dependencies = { 'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim' }
+            },
+            -- {
+            --     'tzachar/cmp-fuzzy-path',
+            --     dependencies = { 'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim' }
+            -- },
+            {
+                "petertriho/cmp-git",
+                dependencies = "nvim-lua/plenary.nvim"
+            },
+            -- Auto inserts parathensis / brackets
+            {
+                "windwp/nvim-autopairs",
+            },
             -- Zsh autocompletions
             -- { "Shougo/deol.nvim" },
             -- { 'hrsh7th/cmp-emoji' },
-        }
-    }
-    use {
-        'David-Kunz/cmp-npm',
-        requires = { 'nvim-lua/plenary.nvim' }
-    }
-
-    -- For auto-fetching lsp servers
-    use {
-        "williamboman/mason.nvim",
-        run = ":MasonUpdate" -- :MasonUpdate updates registry contents
-    }
-end)
+            -- for icons in completion menu
+            { 'onsails/lspkind.nvim', }
+        },
+        config = function()
+            require('lozevski.cmp')
+        end
+    },
+    {
+        'neovim/nvim-lspconfig',
+        cmd = 'LspInfo',
+        -- TODO: figure out issues with lazy loading
+        -- event = { 'BufReadPre', 'BufNewFile' },
+        dependencies = {
+            { 'hrsh7th/cmp-nvim-lsp' },              -- Required
+            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+            {
+                'williamboman/mason.nvim',
+                build = function()
+                    pcall(vim.cmd, 'MasonUpdate')
+                end,
+            },
+            { 'lukas-reineke/lsp-format.nvim' }, -- Required for async format on save
+            { 'hrsh7th/cmp-nvim-lsp-signature-help' },
+            { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
+            { 'neovim/nvim-lspconfig' }, -- Required
+        },
+        config = function()
+            require('lozevski.lsp')
+        end
+    },
+})

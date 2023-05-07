@@ -30,6 +30,11 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = ""
 
+-- global statusline
+vim.opt.laststatus = 3
+vim.wo.cursorline = true
+vim.opt.statusline = " %f %m %= %l:%c ♥ "
+
 vim.opt.showmatch = true          -- Highlight matching parenthesis
 vim.opt.clipboard = 'unnamedplus' -- Copy/paste to system clipboard
 
@@ -90,6 +95,6 @@ end
 vim.cmd([[
 augroup highlight_yank
     autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=350}
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=150}
 augroup END
 ]])

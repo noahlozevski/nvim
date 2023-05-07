@@ -1,8 +1,9 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 local no_remap = function(lhs, rhs)
-    vim.api.nvim_set_keymap('', lhs, rhs, { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('', lhs, rhs, { noremap = true, silent = true })
 end
 
 no_remap("<Up>", "<Nop>")
