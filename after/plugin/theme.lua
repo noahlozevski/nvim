@@ -1,3 +1,4 @@
+-- keeping this in the after as a big file so i can toggle / modify without having to navigate
 function startCatppuccin()
     require("catppuccin").setup({
         flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -193,17 +194,17 @@ function toggle_light_dark()
 end
 
 vim.keymap.set(
-    "",
-    "<leader>tl",
-    toggle_light_dark,
-    { desc = "Toggle light / dark mode" }
+"",
+"<leader>tl",
+toggle_light_dark,
+{ desc = "Toggle light / dark mode" }
 )
 
 vim.keymap.set(
-    "",
-    "<leader>tt",
-    toggle_theme,
-    { desc = "Toggle theme" }
+"",
+"<leader>tt",
+toggle_theme,
+{ desc = "Toggle theme" }
 )
 
 -- start default / first theme
