@@ -16,7 +16,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
@@ -41,7 +41,6 @@ vim.opt.clipboard = 'unnamedplus' -- Copy/paste to system clipboard
 
 vim.opt.splitright = false        -- Vertical split to the right
 vim.opt.splitbelow = false        -- Horizontal split to the bottom
-vim.opt.ignorecase = true         -- Ignore case letters when search
 vim.opt.smartcase = true          -- Ignore lowercase for the whole pattern
 vim.opt.hidden = true             -- Enable background buffers
 vim.opt.history = 100             -- Remember N lines in history
