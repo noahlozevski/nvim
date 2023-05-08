@@ -21,7 +21,7 @@ local fuzzy_buffer_conf = {
     name = 'fuzzy_buffer',
     keyword_length = 3,
     option = {
-        max_matches = 5,
+        max_matches = 2,
         -- pull from all loaded buffers
         get_bufnrs = function()
             local bufs = {}
@@ -63,17 +63,6 @@ cmp.setup.cmdline('/', {
             -- no keyword length to find matches when replacing
             option = {
                 max_matches = 5,
-                -- pull from all loaded buffers
-                get_bufnrs = function()
-                    local bufs = {}
-                    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-                        local buftype = vim.api.nvim_buf_get_option(buf, 'buftype')
-                        if buftype ~= 'nofile' and buftype ~= 'prompt' then
-                            bufs[#bufs + 1] = buf
-                        end
-                    end
-                    return bufs
-                end
             }
         }
     })
@@ -236,14 +225,12 @@ local opts = {
             { name = 'nvim_lsp_signature_help' },
         },
         {
+            { name = 'async_path' },
             -- pulls strings from whole workspace
             { name = "rg" },
             -- buffer results usually arent as helpful
             -- { name = 'buffer' },
             fuzzy_buffer_conf,
-        },
-        {
-            { name = 'async_path' },
         }
     )
 }

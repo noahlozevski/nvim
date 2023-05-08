@@ -1,6 +1,6 @@
 -- toggle between showing errors / warnings inline, in a tree format, or not at all
 local current = 0;
-function toggleDiagnostics()
+local function toggleDiagnostics()
     if current == 0 then
         -- disable lines and text
         vim.diagnostic.config({
