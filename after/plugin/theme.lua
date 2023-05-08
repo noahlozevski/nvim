@@ -134,7 +134,7 @@ function startRosePine()
             -- ColorColumn = { bg = 'rose' },
             -- Blend colours against the "base" background
             CursorLine = { bg = 'foam', blend = 10 },
-            StatusLine = { fg = "love", bg = "love", blend = 10 },
+            StatusLine = { fg = "rose", bg = "iris", blend = 10 },
             StatusLineNC = { fg = "subtle", bg = "surface" },
             TelescopeBorder = { fg = "highlight_high", bg = "none" },
             TelescopeNormal = { bg = "none" },
