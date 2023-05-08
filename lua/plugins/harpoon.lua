@@ -16,6 +16,9 @@ return {
         vim.keymap.set("n", "<C-k>", function()
             ui.nav_file(3)
         end)
+        vim.keymap.set("n", "<C-l>", function()
+            ui.nav_file(4)
+        end)
         -- vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end)
 
         require("harpoon").setup({
