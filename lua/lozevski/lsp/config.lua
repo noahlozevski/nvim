@@ -98,8 +98,8 @@ vim.diagnostic.config({
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
 local configured_servers = {
-    'tsserver',
-    'eslint',
+    -- 'tsserver',
+    -- 'eslint',
     'rust_analyzer',
     'lua_ls',
     -- 'null-ls',

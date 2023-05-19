@@ -12,7 +12,7 @@ return {
             }
         })
 
-        vim.keymap.set("", "<leader>gb", "<cmd>GitBlameLineToggle<CR>", {
+        vim.keymap.set("", "<leader>gb", "<cmd>GitBlameLineShow<CR>", {
             noremap = true,
             silent = true
         })
