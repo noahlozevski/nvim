@@ -160,9 +160,23 @@ function startRESETTTTT()
     vim.cmd.colorscheme("default")
 end
 
+
+function startGithubDark()
+    vim.cmd.colorscheme('github_dark')
+end
+function startGithubDimmed()
+    vim.cmd.colorscheme('github_dark_dimmed')
+end
+function startGithubDarkest()
+    vim.cmd.colorscheme('github_dark_high_contrast')
+end
+
 vim.opt.background = "dark"
 
 local themers = {
+    startGithubDarkest,
+    startGithubDark,
+    startGithubDimmed,
     startRosePine,
     startCatppuccin,
     startAurora,
