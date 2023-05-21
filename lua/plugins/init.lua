@@ -16,7 +16,7 @@ return {
 
     'ThePrimeagen/vim-be-good',
     'nvim-lua/plenary.nvim',
-
+  
     -- Themes
     { 'rose-pine/neovim',           name = 'rose-pine' },
     { "bluz71/vim-nightfly-colors", name = "nightfly" },
@@ -30,14 +30,6 @@ return {
     'nyoom-engineering/oxocarbon.nvim',
     {
         'projekt0n/github-nvim-theme',
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other start plugins
-        config = function()
-            require('github-theme').setup({
-                -- ...
-            })
-
-            vim.cmd('colorscheme github_dark')
-        end,
+        lazy = false,
     }
 }
