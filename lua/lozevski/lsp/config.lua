@@ -142,8 +142,10 @@ lspconfig.lua_ls.setup {
     },
 }
 
--- require("lspconfig")["null-ls"].setup({})
+pcall(require, 'lozevski.lsp.work')
 
 lsp.setup()
 
-
+return {
+    on_attach = on_attach
+}

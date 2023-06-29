@@ -16,7 +16,8 @@ return {
 
     'ThePrimeagen/vim-be-good',
     'nvim-lua/plenary.nvim',
-  
+ 
+    'mfussenegger/nvim-jdtls',
     -- Themes
     { 'rose-pine/neovim',           name = 'rose-pine' },
     { "bluz71/vim-nightfly-colors", name = "nightfly" },
