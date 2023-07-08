@@ -3,21 +3,37 @@ return {
     dependencies = {
         { 'nvim-lua/plenary.nvim' },
         { "tsakirist/telescope-lazy.nvim" },
+        { "nvim-telescope/telescope-fzf-native.nvim" },
     },
     config = function () 
         require('telescope').setup({
             defaults = {
-                -- emulates the ivy layout by default for telescope windows
-                layout_strategy = 'bottom_pane',
                 layout_config = {
-                    height = 15,
+                    height = vim.o.lines, -- maximally available lines
+                    width = vim.o.columns, -- maximally available columns
+                    prompt_position = "bottom",
+                    -- preview_height = 0.6, -- 60% of available lines
                 },
+
+                -- -- emulates the ivy layout by default for telescope windows
+                layout_strategy = 'flex',
+                -- layout_config = {
+                --     height = 20,
+                -- },
                 border = true,
                 sorting_strategy = "ascending",
                 path_display = {
                     "smart",
                 },
             },
+            fzf = {
+                fuzzy = true,                    -- false will only do exact matching
+                override_generic_sorter = true,  -- override the generic sorter
+                override_file_sorter = true,     -- override the file sorter
+                case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                -- the default case_mode is "smart_case"
+            }
+
         })
         local builtin = require('telescope.builtin')
         -- vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
