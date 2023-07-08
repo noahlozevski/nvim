@@ -1,0 +1,75 @@
+function updir(){
+  local path=""
+  for ((i=1;i<=$1;i++)); do
+    path="../$path"
+  done
+  echo "Moving to $path" >&2
+  cd "$path"
+}
+
+# define function for detecting kerebos ticket status, auto initiates it if its invalid
+renew_k() { kinit -f -l 86400 -r 2592000; }
+
+# auto renew mwinit
+function renew_m() {
+  SSH_CERT=~/.ssh/id_rsa-cert.pub
+  if (! test -f "$SSH_CERT") || (test "`find ~/.ssh/id_rsa-cert.pub -mmin +1220`"); then
+    echo "Midway expired. Please re-authenticate."
+    if mwinit -o ; then
+      echo "saved keys"
+    else
+      echo "Failed to authenticate."
+    fi
+  fi
+}
+
+# run to check certs
+function startupshit() {
+  if ! klist -s; then renew_k; fi
+  renew_m
+}
+
+
+# forceably install app even if already installed
+function force_adb_install() {
+  echo "Uninstalling the app (if possible)"
+  adb shell pm list packages | grep com.amazon.dee.app && echo "uninstalling the app since it is already installed" && adb uninstall com.amazon.dee.app
+
+  echo "installing new apk"
+  adb install $1
+}
+
+
+
+# only works in zsh bc of the expansion / $* handling
+# adds n packages with the --latest flag
+# ex addpackage package1 package2 package3 -> brazil workspace use --package package1 --package package2 ... --latest
+function addpackage() {
+  local packagelist=${*/#/-p }
+  echo "Adding packages $* to workspace..."
+  brazil workspace use ${(z)packagelist} --latest
+}
+
+# only works in zsh bc of the expansion / $* handling
+# removes n packages with the --latest flag
+# ex removepackage package1 package2 package3 -> brazil workspace use --package package1 --package package2 ... --latest
+function removepackage() {
+  local packagelist=${*/#/-p }
+  echo "Removing packages $* from workspace..."
+  brazil workspace remove ${(z)packagelist}
+}
+
+# only works in zsh bc of the expansion / $* handling
+# equivalent to removepackage package1 package2 && addpackage package1 package2
+function refreshpackage() {
+  local packagelist=${*/#/-p }
+  echo "Removing packages $* from workspace..."
+  brazil workspace remove ${(z)packagelist}
+  echo "Adding packages $* to workspace..."
+  brazil workspace use ${(z)packagelist} --latest
+}
+
+function wiki() { amzn-wiki put $@ --content "" --syntax Markdown }
+# example use: wiki https://w.amazon.com/bin/view/Accessibility/Retail_Accessibility/Internal/RetailA11yTech/Ra11yOnCall/Runbook/myNewRunbook 
+# or just: wiki Accessibility/Retail_Accessibility/Internal/RetailA11yTech/Ra11yOnCall/Runbook/myNewRunbook
+

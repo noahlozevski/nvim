@@ -1,0 +1,6 @@
+source ~/.scripts/zshrc/variables
+source ~/.scripts/zshrc/aliases
+source ~/.scripts/zshrc/functions
+source ~/.scripts/zshrc/languages
+
+alias server="echo yes"

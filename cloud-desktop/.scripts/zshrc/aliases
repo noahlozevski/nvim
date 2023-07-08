@@ -1,0 +1,57 @@
+###### BRAZIL #######
+alias bb=brazil-build
+alias bba='brazil-build apollo-pkg'
+alias bre='brazil-runtime-exec'
+alias bbe='brazil-build-tool-exec'
+alias brc='brazil-recursive-cmd'
+alias bws='brazil ws'
+alias bwss='brazil ws show'
+alias bwsuse='bws use --gitMode -p'
+alias bwscreate='bws create -n'
+alias bbr='brc brazil-build-rainbow'
+alias bball='brc --allPackages'
+alias bbb='brc --allPackages brazil-build'
+alias bbra='bbr apollo-pkg'
+alias bws_sync='brazil ws --sync --md'
+alias cleanup="$HOME/.toolbox/bin/brazil-package-cache clean"
+alias sam='brazil-build-tool-exec sam'
+alias work='cd ~/workplace'
+alias buildup='brc -- brazil-build build:distribute'
+alias show='brazil ws show'
+
+####### MISC ########
+alias batchgitshit='~/workplace/scripts/batch-git-wrapper.sh'
+alias lastcommit='cr --parent HEAD^'
+alias ammendandupdate='git commit --amend --no-edit && lastcommit'
+alias clean-xcode="rm -rf ~/Library/Developer/Xcode/DerivedData/*"
+
+# edit scripts dir
+alias editstuff='code ~/.scripts/zshrc'
+
+alias ll="ls -al" # List all files in current directory in long list format
+alias ldir="ls -al | grep ^d" # List all directories in current directory in long list format
+alias o="open ." # Open the current directory in Finder
+alias mc='micro' # better text editor
+alias watch_directory='~/.scripts/watch_directory.sh'
+
+####### ALEXA #########
+alias watchme='brazil-build build-watch' ## for elements packages
+alias android="open -a /Applications/Android\ Studio.app"
+alias androidtunnel='adb reverse tcp:8081 tcp:8081'
+alias iosbuild="brazil-recursive-cmd 'brazil-build xcode-env'"
+
+####### AMHS ########
+alias register_with_aaa='/apollo/env/AAAWorkspaceSupport/bin/register_with_aaa.py -a AlexaMobileHomeService'
+alias register_with_keymaster='/apollo/bin/env -e KeyMasterDaemonWorkspaceSupport cli.py -a AlexaMobileHomeService --start'
+alias start_amhs='register_with_aaa && register_with_keymaster'
+
+######## code server ######
+alias start_code_server_insiders='/home/nlozevsk/vscode-server-linux-x64-web/bin/code-server-insiders --host 0.0.0.0 --port 5001 --without-connection-token --accept-server-license-terms --server-data-dir /home/nlozevsk/vscode-server-user-data --telemetry-level off'
+
+### default version of tmux is really old on AL2, this pullls the new one from env improvement 
+alias tmux=/apollo/env/envImprovement/bin/tmux
+alias tmux-sessionizer=~/.scripts/tmux-sessionizer.sh
+
+alias show='brazil ws show'
+
+alias open=~/.scripts/tmux-sessionizer.sh
