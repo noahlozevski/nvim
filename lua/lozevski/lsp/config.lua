@@ -115,11 +115,14 @@ for i, server in ipairs(configured_servers) do
     }
 end
 
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.offsetEncoding = 'utf-8'
--- lspconfig.clangd.setup{
---     capabilities = capabilities
--- }
+require("lspconfig").clangd.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    "clangd",
+    "--offset-encoding=utf-16",
+  },
+}
 
 lspconfig.tsserver.setup {
     on_attach = on_attach,
