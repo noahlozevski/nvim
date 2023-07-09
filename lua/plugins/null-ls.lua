@@ -15,16 +15,26 @@ local async = event == "BufWritePost"
 -- end
 return {
     "jose-elias-alvarez/null-ls.nvim",
+    event = "BufEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
         local null_ls = require("null-ls")
 
         -- register any number of sources simultaneously
         local sources = {
+            -- js / ts
             null_ls.builtins.formatting.prettierd.with({ prefer_local = true }),
             -- null_ls.builtins.diagnostics.eslint_d,
             null_ls.builtins.code_actions.eslint_d,
-            null_ls.builtins.hover.dictionary
+
+            -- generic
+            null_ls.builtins.hover.dictionary,
+
+            -- c / cpp
+            null_ls.builtins.formatting.clang_format,
+            null_ls.builtins.diagnostics.cppcheck,
+            -- null_ls.builtins.diagnostics.clang_check,
+            null_ls.builtins.formatting.uncrustify
         }
 
         -- Keymappings
@@ -51,7 +61,7 @@ return {
             --         })
             --     end
             -- end
-            on_attach = function(client, bufnr)
+           on_attach = function(client, bufnr)
                 if client.supports_method("textDocument/formatting") then
                     vim.keymap.set("n", "<leader>f", function()
                         vim.lsp.buf.format({
@@ -63,21 +73,21 @@ return {
                     end, { buffer = bufnr, desc = "[lsp] format" })
 
                     -- format on save
-                    -- vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
-                    -- vim.api.nvim_create_autocmd(event, {
-                    --     buffer = bufnr,
-                    --     group = group,
-                    --     callback = function()
-                    --         vim.lsp.buf.format({
-                    --             bufnr = bufnr,
-                    --             async = true,
-                    --             filter = function(_client)
-                    --                 return _client.name == "null-ls"
-                    --             end
-                    --         })
-                    --     end,
-                    --     desc = "[lsp] format on save",
-                    -- })
+                    vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+                    vim.api.nvim_create_autocmd(event, {
+                        buffer = bufnr,
+                        group = group,
+                        callback = function()
+                            vim.lsp.buf.format({
+                                bufnr = bufnr,
+                                async = true,
+                                filter = function(_client)
+                                    return _client.name == "null-ls"
+                                end
+                            })
+                        end,
+                        desc = "[lsp] format on save",
+                    })
                 end
 
                 if client.supports_method("textDocument/rangeFormatting") then

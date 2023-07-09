@@ -6,6 +6,7 @@ lsp.ensure_installed({
     'eslint',
     'rust_analyzer',
     'lua_ls',
+    'clangd',
 })
 
 lsp.nvim_workspace()
@@ -40,6 +41,7 @@ lsp.set_preferences({
 local allowed_format_servers = {
     -- 'tsserver',
     -- 'eslint',
+    'clangd',
     'rust_analyzer',
     'lua_ls',
     'null-ls'
@@ -100,6 +102,7 @@ local lspconfig = require('lspconfig')
 local configured_servers = {
     -- 'tsserver',
     -- 'eslint',
+    'clangd',
     'rust_analyzer',
     'lua_ls',
     -- 'null-ls',
@@ -111,6 +114,12 @@ for i, server in ipairs(configured_servers) do
         capabilities = capabilities
     }
 end
+
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.offsetEncoding = 'utf-8'
+-- lspconfig.clangd.setup{
+--     capabilities = capabilities
+-- }
 
 lspconfig.tsserver.setup {
     on_attach = on_attach,

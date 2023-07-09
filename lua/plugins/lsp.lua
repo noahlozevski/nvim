@@ -2,7 +2,7 @@ return {
     'neovim/nvim-lspconfig',
     cmd = 'LspInfo',
     -- TODO: figure out issues with lazy loading
-    -- event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {{'hrsh7th/cmp-nvim-lsp'}, -- Required
     {'williamboman/mason-lspconfig.nvim'}, -- Optional
     {
