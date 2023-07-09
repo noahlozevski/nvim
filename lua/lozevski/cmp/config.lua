@@ -57,7 +57,6 @@ cmp.setup.cmdline('/', {
         { name = 'nvim_lsp_document_symbol' }
     }, {
         { name = "rg" },
-
         {
             name = 'fuzzy_buffer',
             -- no keyword length to find matches when replacing
@@ -72,14 +71,14 @@ cmp.setup.cmdline('/', {
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-            { name = 'cmdline' },
-            { name = 'async_path' },
-            { name = 'zsh', },
-            { name = "cmdline_history" },
-        },
-        {
-            fuzzy_buffer_conf
-        })
+        { name = 'cmdline' },
+        { name = 'async_path' },
+        { name = 'zsh', },
+        { name = "cmdline_history" },
+    },
+    {
+        fuzzy_buffer_conf
+    })
 })
 
 local opts = {
@@ -116,12 +115,12 @@ local opts = {
             local strings = vim.split(kind.kind, "%s", { trimempty = true })
             kind.kind = " " .. (strings[1] or "") .. " "
             local menu = ({
-                    buffer = "Buffer",
-                    fuzzy_buffer = "Buffer",
-                    nvim_lsp = "LSP",
-                    vsnip = "VSnip",
-                    nvim_lua = "Lua",
-                })[entry.source.name] or strings[2] or ""
+                buffer = "Buffer",
+                fuzzy_buffer = "Buffer",
+                nvim_lsp = "LSP",
+                vsnip = "VSnip",
+                nvim_lua = "Lua",
+            })[entry.source.name] or strings[2] or ""
             kind.menu = "    (" .. (menu) .. ")"
             return kind
         end,
@@ -214,24 +213,24 @@ local opts = {
         -- end, { "i", "s" }),
     }),
     sources = cmp.config.sources({
-            { name = 'nvim_lsp' },
-            { name = 'vsnip' }, -- For vsnip users.
-            -- { name = 'calc' }, cant get this to work but would be cool ???
-            -- { name = 'tmux' },
-            -- { name = 'emoji' },
-            { name = 'nvim_lua' },
-        },
-        {
-            { name = 'nvim_lsp_signature_help' },
-        },
-        {
-            { name = 'async_path' },
-            -- pulls strings from whole workspace
-            { name = "rg" },
-            -- buffer results usually arent as helpful
-            -- { name = 'buffer' },
-            fuzzy_buffer_conf,
-        }
+        { name = 'nvim_lsp' },
+        { name = 'vsnip' }, -- For vsnip users.
+        -- { name = 'calc' }, cant get this to work but would be cool ???
+        -- { name = 'tmux' },
+        -- { name = 'emoji' },
+        { name = 'nvim_lua' },
+    },
+    {
+        { name = 'nvim_lsp_signature_help' },
+    },
+    {
+        { name = 'async_path' },
+        -- pulls strings from whole workspace
+        { name = "rg" },
+        -- buffer results usually arent as helpful
+        -- { name = 'buffer' },
+        fuzzy_buffer_conf,
+    }
     )
 }
 
