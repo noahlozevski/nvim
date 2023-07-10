@@ -173,10 +173,21 @@ function startGithubDarkest()
     vim.cmd.colorscheme('github_dark_high_contrast')
 end
 
+function startKanagawa()
+    require('kanagawa')
+    vim.cmd("colorscheme kanagawa-wave")
+end
+function startKanagawaAlt()
+    require('kanagawa')
+    vim.cmd("colorscheme kanagawa-dragon")
+end
+
 vim.opt.background = "dark"
 
 local themers = {
     startRosePine,
+    startKanagawa,
+    startKanagawaAlt,
     startCatppuccin,
     startAurora,
     startMoonfly,
