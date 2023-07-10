@@ -9,19 +9,20 @@ local function toggleDiagnostics()
             virtual_text = false
         })
     elseif current == 1 then
+        -- enable signcolumn and disable lines
         vim.opt.signcolumn = "auto"
         vim.diagnostic.config({
             virtual_lines = false,
             virtual_text = false
         })
     elseif current == 2 then
-        vim.opt.signcolumn = "auto"
+        vim.opt.signcolumn = "no"
         vim.diagnostic.config({
             virtual_lines = false,
             virtual_text = true
         })
     elseif current == 3 then
-        vim.opt.signcolumn = "auto"
+        vim.opt.signcolumn = "no"
         vim.diagnostic.config({
             virtual_lines = true,
             virtual_text = false
