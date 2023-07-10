@@ -88,11 +88,11 @@ end
 lsp.on_attach = on_attach
 
 vim.diagnostic.config({
-    -- virtual_text = {
-    --     source = 'if_many',
-    --     prefix = '●',
-    -- },
-    virtual_text = true,
+    virtual_text = {
+        source = 'if_many',
+        prefix = '●',
+    },
+    -- virtual_text = true,
     severity_sort = true,
 })
 

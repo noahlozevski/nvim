@@ -2,24 +2,33 @@
 local current = 0;
 local function toggleDiagnostics()
     if current == 0 then
+        vim.opt.signcolumn = "no"
         -- disable lines and text
         vim.diagnostic.config({
             virtual_lines = false,
             virtual_text = false
         })
     elseif current == 1 then
+        vim.opt.signcolumn = "auto"
         vim.diagnostic.config({
-            virtual_lines = true,
+            virtual_lines = false,
             virtual_text = false
         })
     elseif current == 2 then
+        vim.opt.signcolumn = "auto"
         vim.diagnostic.config({
             virtual_lines = false,
             virtual_text = true
         })
+    elseif current == 3 then
+        vim.opt.signcolumn = "auto"
+        vim.diagnostic.config({
+            virtual_lines = true,
+            virtual_text = false
+        })
     end
     current = current + 1
-    if current == 3 then
+    if current == 4 then
         current = 0
     end
 end
