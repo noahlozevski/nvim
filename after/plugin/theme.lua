@@ -208,6 +208,13 @@ function toggle_theme()
         current = 0
     end
 end
+function reverse_toggle_theme()
+    current = current - 1
+    if current == 1 then
+        current = #themers - 1
+    end
+    themers[current]()
+end
 
 local color = "dark"
 function toggle_light_dark()
@@ -231,7 +238,13 @@ vim.keymap.set(
 "",
 "<leader>tt",
 toggle_theme,
-{ desc = "Toggle theme" }
+{ desc = "Cycle themes" }
+)
+vim.keymap.set(
+"",
+"<leader>tr",
+reverse_toggle_theme,
+{ desc = "Reverse cycle themes" }
 )
 
 -- start default / first theme
