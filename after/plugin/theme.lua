@@ -31,13 +31,6 @@ function startCatppuccin()
             types = {},
             operators = {}
         },
-        color_overrides = {
-            all = {},
-            latte = {},
-            frappe = {},
-            macchiato = {},
-            mocha = {}
-        },
         integrations = {
             -- <module> = <boolean>
             harpoon = true,
@@ -83,12 +76,11 @@ function startTokyoNight()
 end
 
 function startOxocarbon()
-    vim.cmd([[ let g:aurora_transparent = 1 ]])
-    -- vim.cmd([[ let g:aurora_darker = 1 ]])
     vim.cmd.colorscheme("oxocarbon")
 end
 
 function startAurora()
+    vim.cmd([[ let g:aurora_transparent = 1 ]])
     vim.cmd.colorscheme("aurora")
 end
 
@@ -148,10 +140,12 @@ function startRosePine()
 end
 
 function startMoonfly()
+    vim.g.moonflyTransparent = true
     vim.cmd.colorscheme("moonfly")
 end
 
 function startNightfly()
+    vim.g.nightflyTransparent = true
     vim.cmd.colorscheme("nightfly")
 end
 
@@ -161,24 +155,27 @@ function startRESETTTTT()
 end
 
 function startGithubDark()
-    require('github-theme').setup({})
+    require('github-theme').setup({ options = { transparent = true }, transparent = true })
     vim.cmd.colorscheme('github_dark')
 end
+
 function startGithubDimmed()
-    require('github-theme').setup({})
+    require('github-theme').setup({ options = { transparent = false }, transparent = false })
     vim.cmd.colorscheme('github_dark_dimmed')
 end
+
 function startGithubDarkest()
-    require('github-theme').setup({})
+    require('github-theme').setup({ transparent = false })
     vim.cmd.colorscheme('github_dark_high_contrast')
 end
 
 function startKanagawa()
-    require('kanagawa')
+    require('kanagawa').setup({ transparent = true })
     vim.cmd("colorscheme kanagawa-wave")
 end
+
 function startKanagawaAlt()
-    require('kanagawa')
+    require('kanagawa').setup({ transparent = true })
     vim.cmd("colorscheme kanagawa-dragon")
 end
 
@@ -249,3 +246,4 @@ reverse_toggle_theme,
 
 -- start default / first theme
 themers[1]()
+toggle_theme()
