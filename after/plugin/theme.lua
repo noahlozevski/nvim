@@ -182,37 +182,51 @@ end
 vim.opt.background = "dark"
 
 local themers = {
-    startRosePine,
-    startKanagawaAlt,
-    startKanagawa,
-    startCatppuccin,
-    startAurora,
-    startMoonfly,
-    startNightfly,
-    startTokyoNight,
-    startOxocarbon,
-    startGithubDarkest,
-    startGithubDark,
-    startGithubDimmed,
-    startRESETTTTT,
+    { 'startRosePine', startRosePine, },
+    { 'startKanagawaAlt', startKanagawaAlt, },
+    { 'startKanagawa', startKanagawa, },
+    { 'startCatppuccin', startCatppuccin, },
+    { 'startAurora', startAurora, },
+    { 'startMoonfly', startMoonfly, },
+    { 'startNightfly', startNightfly, },
+    { 'startTokyoNight', startTokyoNight, },
+    { 'startOxocarbon', startOxocarbon, },
+    { 'startGithubDarkest', startGithubDarkest, },
+    { 'startGithubDark', startGithubDark, },
+    { 'startGithubDimmed', startGithubDimmed, },
+    { 'startRESETTTTT', startRESETTTTT, },
 }
+
 
 local current = 0;
 function toggle_theme()
     current = current + 1
-    themers[current]()
     if current == #themers then
         current = 0
     end
+    local theme = themers[current]
+    -- call theme
+    theme[2]()
+    -- print name
+    print_theme(theme[1])
 end
+
 function reverse_toggle_theme()
     current = current - 1
     if current == 1 then
         current = #themers - 1
     end
-    themers[current]()
+    local theme = themers[current]
+    -- call theme
+    theme[2]()
+    -- print name
+    print_theme(theme[1])
 end
 
+function print_theme(theme)
+    -- need to defer the print since it gets cleared by the theme asynchronously
+    vim.defer_fn(function() print("lua " .. tostring(theme) .. "()") end, 100)
+end
 local color = "dark"
 function toggle_light_dark()
     if color == "dark" then
@@ -228,22 +242,22 @@ vim.keymap.set(
 "",
 "<leader>tl",
 toggle_light_dark,
-{ desc = "Toggle light / dark mode" }
+{ desc = "Toggle light / dark mode", silent = false}
 )
 
 vim.keymap.set(
 "",
 "<leader>tt",
 toggle_theme,
-{ desc = "Cycle themes" }
+{ desc = "Cycle themes", silent = false }
 )
 vim.keymap.set(
 "",
 "<leader>tr",
 reverse_toggle_theme,
-{ desc = "Reverse cycle themes" }
+{ desc = "Reverse cycle themes", silent = false }
 )
 
 -- start default / first theme
-themers[1]()
+themers[1][2]()
 toggle_theme()
