@@ -7,7 +7,7 @@ function startCatppuccin()
             light = "frappe",
             dark = "mocha"
         },
-        transparent_background = true,
+        transparent_background = false,
         show_end_of_buffer = true, -- show the '~' characters after the end of buffers
         term_colors = true,
         dim_inactive = {
@@ -53,7 +53,7 @@ function startTokyoNight()
         -- or leave it empty to use the default settings
         style = "night",        -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
         light_style = "day",    -- The theme is used when the background is set to light
-        transparent = true,     -- Enable this to disable setting the background color
+        transparent = false,     -- Enable this to disable setting the background color
         terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
         styles = {
             -- Style to be applied to different syntax groups
@@ -140,12 +140,12 @@ function startRosePine()
 end
 
 function startMoonfly()
-    vim.g.moonflyTransparent = true
+    -- vim.g.moonflyTransparent = true
     vim.cmd.colorscheme("moonfly")
 end
 
 function startNightfly()
-    vim.g.nightflyTransparent = true
+    -- vim.g.nightflyTransparent = true
     vim.cmd.colorscheme("nightfly")
 end
 
@@ -155,17 +155,17 @@ function startRESETTTTT()
 end
 
 function startGithubDark()
-    require('github-theme').setup({ options = { transparent = true }, transparent = true })
+    require('github-theme')
     vim.cmd.colorscheme('github_dark')
 end
 
 function startGithubDimmed()
-    require('github-theme').setup({ options = { transparent = false }, transparent = false })
+    require('github-theme')
     vim.cmd.colorscheme('github_dark_dimmed')
 end
 
 function startGithubDarkest()
-    require('github-theme').setup({ transparent = false })
+    require('github-theme')
     vim.cmd.colorscheme('github_dark_high_contrast')
 end
 
@@ -175,7 +175,7 @@ function startKanagawa()
 end
 
 function startKanagawaAlt()
-    require('kanagawa').setup({ transparent = true })
+    require('kanagawa').setup({})
     vim.cmd("colorscheme kanagawa-dragon")
 end
 
@@ -183,14 +183,14 @@ vim.opt.background = "dark"
 
 local themers = {
     startRosePine,
-    startKanagawa,
     startKanagawaAlt,
+    startKanagawa,
     startCatppuccin,
     startAurora,
     startMoonfly,
     startNightfly,
-    startOxocarbon,
     startTokyoNight,
+    startOxocarbon,
     startGithubDarkest,
     startGithubDark,
     startGithubDimmed,
