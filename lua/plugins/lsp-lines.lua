@@ -1,5 +1,5 @@
 -- toggle between showing errors / warnings inline, in a tree format, or not at all
-local current = 0;
+local current = 3;
 local function toggleDiagnostics()
     if current == 0 then
         vim.opt.signcolumn = "no"

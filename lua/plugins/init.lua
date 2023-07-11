@@ -35,5 +35,12 @@ return {
     },
     {
         'rebelot/kanagawa.nvim'
+    },
+    {
+        'airblade/vim-gitgutter',
+        dependencies = {
+            'tpope/vim-fugitive'
+        }
     }
+
 }
