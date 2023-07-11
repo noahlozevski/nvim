@@ -1,35 +1,35 @@
 -- toggle between showing errors / warnings inline, in a tree format, or not at all
-local current = 3;
+local current = 0;
 local function toggleDiagnostics()
     if current == 0 then
-        vim.opt.signcolumn = "no"
+        -- vim.opt.signcolumn = "no"
         -- disable lines and text
         vim.diagnostic.config({
             virtual_lines = false,
             virtual_text = false
         })
     elseif current == 1 then
-        vim.opt.signcolumn = "no"
+        -- vim.opt.signcolumn = "no"
         vim.diagnostic.config({
             virtual_lines = false,
             virtual_text = true
         })
     elseif current == 2 then
-        vim.opt.signcolumn = "no"
+        -- vim.opt.signcolumn = "no"
         vim.diagnostic.config({
             virtual_lines = true,
             virtual_text = false
         })
-    elseif current == 3 then
-        -- enable signcolumn and disable lines
-        vim.opt.signcolumn = "yes"
-        vim.diagnostic.config({
-            virtual_lines = false,
-            virtual_text = false
-        })
+    -- elseif current == 3 then
+    --     -- enable signcolumn and disable lines
+    --     -- vim.opt.signcolumn = "yes"
+    --     vim.diagnostic.config({
+    --         virtual_lines = false,
+    --         virtual_text = false
+    --     })
     end
     current = current + 1
-    if current == 4 then
+    if current == 3 then
         current = 0
     end
 end

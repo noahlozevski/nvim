@@ -24,7 +24,7 @@ vim.opt.termguicolors = true
 vim.opt.sidescroll = 1
 vim.opt.sidescrolloff = 8
 vim.opt.scrolloff = 8
--- vim.opt.signcolumn = "no"
+-- vim.opt.signcolumn = "auto"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 250
