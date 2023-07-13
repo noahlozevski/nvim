@@ -30,11 +30,11 @@ return {
             -- generic
             null_ls.builtins.hover.dictionary,
 
-            -- c / cpp
-            null_ls.builtins.formatting.clang_format,
-            null_ls.builtins.diagnostics.cppcheck,
-            -- null_ls.builtins.diagnostics.clang_check,
-            null_ls.builtins.formatting.uncrustify
+            -- -- c / cpp
+            -- null_ls.builtins.formatting.clang_format,
+            -- null_ls.builtins.diagnostics.cppcheck,
+            -- -- null_ls.builtins.diagnostics.clang_check,
+            -- null_ls.builtins.formatting.uncrustify
         }
 
         -- Keymappings
