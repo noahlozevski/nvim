@@ -4,6 +4,7 @@ return {
         'nvim-treesitter/nvim-treesitter'
     },
     opts = {
+        -- this makes function names / conditionals / other things sticky in the header
         enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
         max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
         min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
