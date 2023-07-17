@@ -61,17 +61,19 @@ return {
             -- end
            on_attach = function(client, bufnr)
                -- TODO: remove this and only use lsp formatting
+               --
                 if client.supports_method("textDocument/formatting") then
-                    -- this does a format using only null-ls
-                    vim.keymap.set("n", "<leader>f", function()
-                        vim.lsp.buf.format({
-                            bufnr = vim.api.nvim_get_current_buf(),
-                            filter = function(_client)
-                                return _client.name == "null-ls"
-                            end
-                        })
-                    end, { buffer = bufnr, desc = "[lsp] format" })
 
+                    -- -- this does a format using only null-ls
+                    -- vim.keymap.set("n", "<leader>f", function()
+                    --     vim.lsp.buf.format({
+                    --         bufnr = vim.api.nvim_get_current_buf(),
+                    --         filter = function(_client)
+                    --             return _client.name == "null-ls"
+                    --         end
+                    --     })
+                    -- end, { buffer = bufnr, desc = "[lsp] format" })
+                    --
                     -- format on save
                     -- vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
                     -- vim.api.nvim_create_autocmd(event, {
@@ -90,16 +92,17 @@ return {
                     -- })
                 end
 
-                if client.supports_method("textDocument/rangeFormatting") then
-                    vim.keymap.set("x", "<leader>f", function()
-                        vim.lsp.buf.format({
-                            bufnr = vim.api.nvim_get_current_buf(),
-                            filter = function(_client)
-                                return _client.name == "null-ls"
-                            end
-                        })
-                    end, { buffer = bufnr, desc = "[lsp] format" })
-                end
+                -- if client.supports_method("textDocument/rangeFormatting") then
+                --     vim.keymap.set("x", "<leader>f", function()
+                --         vim.lsp.buf.format({
+                --             bufnr = vim.api.nvim_get_current_buf(),
+                --             filter = function(_client)
+                --                 return _client.name == "null-ls"
+                --             end
+                --         })
+                --     end, { buffer = bufnr, desc = "[lsp] format" })
+                -- end
+                --
             end,
 
         })

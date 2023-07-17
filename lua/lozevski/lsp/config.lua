@@ -44,7 +44,7 @@ local allowed_format_servers = {
     'clangd',
     'rust_analyzer',
     'lua_ls',
-    'null-ls',
+    -- 'null-ls',
     -- 'html',
     -- 'css'
     -- 'prettier',
@@ -61,23 +61,25 @@ local function on_attach(client, bufnr)
     -- lsp.buffer_autoformat()
     -- Enables async format on save capability for a set of servers
 
-    -- Asynchronously autoformat the file on save
-    if vim.tbl_contains(allowed_format_servers, client.name) then
-        require('lsp-format').on_attach(client)
-    end
-
+    -- -- Asynchronously autoformat the file on save
+    -- if vim.tbl_contains(allowed_format_servers, client.name) then
+    --     require('lsp-format').on_attach(client)
+    -- end
+    --
     -- format the file using default lsp server
-    vim.keymap.set({ 'n', 'x' }, 'gq', function()
-        vim.lsp.buf.format({
-            async = true,
-            timeout_ms = 10000,
-            filter = allow_format(allowed_format_servers)
-            -- filter = function(client)
-            --     return client.name ~= 'null-ls'
-            -- end
-        })
-    end)
+    -- vim.keymap.set({ 'n', 'x' }, 'gq', function()
+    --     vim.lsp.buf.format({
+    --         async = false,
+    --         timeout_ms = 10000,
+    --         -- filter = allow_format(allowed_format_servers)
+    --         -- filter = function(client)
+    --         --     return client.name ~= 'null-ls'
+    --         -- end
+    --     })
+    -- end)
 
+    -- formats the file
+    -- vim.keymap.set({ 'n', 'x' }, '<leader>f', function() vim.lsp.buf.format() end, { buffer = bufnr, remap = false, desc = "[lsp] format" })
     vim.api.nvim_set_keymap('n', '<leader>da', '<cmd>lua vim.lsp.buf.code_action()<CR>',
         { noremap = true, silent = true })
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -95,11 +97,11 @@ end
 lsp.on_attach = on_attach
 
 vim.diagnostic.config({
-    virtual_text = {
-        source = 'if_many',
-        prefix = '●',
-    },
-    -- virtual_text = true,
+    -- virtual_text = {
+    --     source = 'if_many',
+    --     prefix = '●',
+    -- },
+    virtual_text = true,
     severity_sort = true,
 })
 

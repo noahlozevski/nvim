@@ -3,7 +3,7 @@ vim.g.maplocalleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 local no_remap = function(lhs, rhs)
-	vim.api.nvim_set_keymap('', lhs, rhs, { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('', lhs, rhs, { noremap = true, silent = true })
 end
 
 no_remap("<Up>", "<Nop>")
@@ -38,6 +38,8 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- Align control + c to esc
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
+-- formattttt 
+vim.keymap.set({ 'n', 'x' }, '<leader>f', function() vim.lsp.buf.format() end)
 -- vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
@@ -53,14 +55,14 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 -- vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
 -- vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 --
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
+-- vim.keymap.set("n", "<leader><leader>", function()
+    --     vim.cmd("so")
+    -- end)
 
---[[ shortcuts for windows
-<Ctrl-W>+v       # Opens a new vertical split
-<Ctrl-W>+s       # Opens a new horizontal split
-<Ctrl-W>+c       # Closes a window
-<Ctrl-W>+o       # Makes current window the only one on screen and closes other windows
-<Ctrl-W>+h/j/k/l # Moves the cursor to left/bottom/top/right
- ]]
+    --[[ shortcuts for windows
+    <Ctrl-W>+v       # Opens a new vertical split
+    <Ctrl-W>+s       # Opens a new horizontal split
+    <Ctrl-W>+c       # Closes a window
+    <Ctrl-W>+o       # Makes current window the only one on screen and closes other windows
+    <Ctrl-W>+h/j/k/l # Moves the cursor to left/bottom/top/right
+    ]]
