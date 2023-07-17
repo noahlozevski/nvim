@@ -38,8 +38,6 @@ return {
         }
 
         -- Keymappings
-        vim.api.nvim_set_keymap('n', '<leader>da', '<cmd>lua vim.lsp.buf.code_action()<CR>',
-        { noremap = true, silent = true })
 
         null_ls.setup({
             sources = sources,
@@ -62,7 +60,9 @@ return {
             --     end
             -- end
            on_attach = function(client, bufnr)
+               -- TODO: remove this and only use lsp formatting
                 if client.supports_method("textDocument/formatting") then
+                    -- this does a format using only null-ls
                     vim.keymap.set("n", "<leader>f", function()
                         vim.lsp.buf.format({
                             bufnr = vim.api.nvim_get_current_buf(),

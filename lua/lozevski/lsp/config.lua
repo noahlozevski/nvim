@@ -44,7 +44,9 @@ local allowed_format_servers = {
     'clangd',
     'rust_analyzer',
     'lua_ls',
-    'null-ls'
+    'null-ls',
+    -- 'html',
+    -- 'css'
     -- 'prettier',
 }
 local function allow_format(servers)
@@ -64,15 +66,20 @@ local function on_attach(client, bufnr)
         require('lsp-format').on_attach(client)
     end
 
-    -- format the file
+    -- format the file using default lsp server
     vim.keymap.set({ 'n', 'x' }, 'gq', function()
         vim.lsp.buf.format({
             async = true,
             timeout_ms = 10000,
             filter = allow_format(allowed_format_servers)
+            -- filter = function(client)
+            --     return client.name ~= 'null-ls'
+            -- end
         })
     end)
 
+    vim.api.nvim_set_keymap('n', '<leader>da', '<cmd>lua vim.lsp.buf.code_action()<CR>',
+        { noremap = true, silent = true })
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
