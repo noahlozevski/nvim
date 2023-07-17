@@ -15,6 +15,7 @@ local cond = require 'nvim-autopairs.conds'
 autopairs.setup({
     enable_check_bracket_line = true,
 })
+
 -- Add spaces between parentheses
 local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
 autopairs.add_rules {
