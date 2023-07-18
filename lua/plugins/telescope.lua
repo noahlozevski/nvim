@@ -23,7 +23,8 @@ return {
                 border = true,
                 sorting_strategy = "ascending",
                 path_display = {
-                    "smart",
+                    -- "smart",
+                    "truncate",
                 },
             },
             fzf = {
@@ -43,11 +44,25 @@ return {
         -- 	builtin.grep_string({ search = vim.fn.input(string.format("Search workspace (root: %s) > ", vim.fn.getcwd())) });
         -- end)
 
+        --  local path_display = function(opts, path)
+        --     local tail = require("telescope.utils").path_tail(path)
+        --     return string.format("%s (%s)", tail, path)
+        -- end
+        --
+        -- local find_files = function ()
+        --     builtin.find_files({
+        --         path_display = path_display
+        --     })
+        -- end
+        --
         vim.keymap.set('n', '<C-p>', builtin.find_files, { silent = true })
+        -- vim.keymap.set('n', '<C-p>', function() builtin.find_files({ path_display = path_display }) end, { silent = true })
         vim.keymap.set('n', '<leader>fg', builtin.git_files, { silent = true })
         vim.keymap.set('n', '<leader>fl', builtin.live_grep, { silent = true })
         vim.keymap.set('n', '<leader>fb', builtin.buffers, { silent = true })
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { silent = true })
+
+        --- 
 
         -- Opens a popup with a list of all the diagnostics from the lsp for the current line
         -- Also accessible with <leader>go
