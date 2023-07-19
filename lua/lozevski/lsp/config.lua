@@ -114,6 +114,7 @@ local configured_servers = {
     'clangd',
     'rust_analyzer',
     'lua_ls',
+    'kotlin_language_server',
     -- 'null-ls',
 }
 

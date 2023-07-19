@@ -23,8 +23,8 @@ return {
                 border = true,
                 sorting_strategy = "ascending",
                 path_display = {
-                    -- "smart",
-                    "truncate",
+                    "smart",
+                    -- "truncate",
                 },
             },
             fzf = {
