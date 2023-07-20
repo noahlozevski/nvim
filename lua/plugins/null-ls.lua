@@ -30,6 +30,9 @@ return {
             -- generic
             null_ls.builtins.hover.dictionary,
 
+            -- bash
+            -- null_ls.builtins.formatting.shfmt,
+
             -- -- c / cpp
             -- null_ls.builtins.formatting.clang_format,
             -- null_ls.builtins.diagnostics.cppcheck,
@@ -59,11 +62,10 @@ return {
             --         })
             --     end
             -- end
-           on_attach = function(client, bufnr)
-               -- TODO: remove this and only use lsp formatting
-               --
+            on_attach = function(client, bufnr)
+                -- TODO: remove this and only use lsp formatting
+                --
                 if client.supports_method("textDocument/formatting") then
-
                     -- -- this does a format using only null-ls
                     -- vim.keymap.set("n", "<leader>f", function()
                     --     vim.lsp.buf.format({

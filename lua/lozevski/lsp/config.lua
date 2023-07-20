@@ -115,6 +115,7 @@ local configured_servers = {
     'rust_analyzer',
     'lua_ls',
     'kotlin_language_server',
+    -- 'shfmt',
     -- 'null-ls',
 }
 
