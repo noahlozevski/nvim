@@ -2587,6 +2587,10 @@ Command failed\.</string>
 				<key>Red Component</key>
 				<real>0.13725490868091583</real>
 			</dict>
+			<key>Background Image Location</key>
+			<string>/Users/nlozevsk/Desktop/waifu.png</string>
+			<key>Background Image Mode</key>
+			<integer>2</integer>
 			<key>Badge Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -2600,6 +2604,8 @@ Command failed\.</string>
 				<key>Red Component</key>
 				<real>0.91764706373214722</real>
 			</dict>
+			<key>Blend</key>
+			<real>0.050000000000000003</real>
 			<key>Blinking Cursor</key>
 			<true/>
 			<key>Blur</key>
@@ -2706,7 +2712,7 @@ Command failed\.</string>
 			<key>Has Hotkey</key>
 			<false/>
 			<key>Horizontal Spacing</key>
-			<integer>1</integer>
+			<real>1</real>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Use Transparency</key>
@@ -3164,7 +3170,7 @@ Command failed\.</string>
 			<key>Minimum Contrast</key>
 			<real>0.41390444364161849</real>
 			<key>Mouse Reporting</key>
-			<false/>
+			<true/>
 			<key>Name</key>
 			<string>Copy of Default</string>
 			<key>Non Ascii Font</key>
@@ -3741,7 +3747,7 @@ Command failed\.</string>
 			<key>Use Underline Color</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<integer>1</integer>
+			<real>1</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>

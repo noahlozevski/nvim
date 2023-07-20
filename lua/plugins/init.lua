@@ -14,10 +14,20 @@ return {
         }
     },
 
+    {
+        "iamcco/markdown-preview.nvim",
+        ft = "markdown",
+        -- :MarkdownPreview
+        -- build = "cd app && yarn install",
+        build = ":call mkdp#util#install()",
+    },
+
+
     'ThePrimeagen/vim-be-good',
     'nvim-lua/plenary.nvim',
- 
+
     'mfussenegger/nvim-jdtls',
+
     -- Themes
     { 'rose-pine/neovim',           name = 'rose-pine' },
     { "bluz71/vim-nightfly-colors", name = "nightfly" },
