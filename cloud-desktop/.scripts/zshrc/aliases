@@ -55,3 +55,6 @@ alias tmux-sessionizer=~/.scripts/tmux-sessionizer.sh
 alias show='brazil ws show'
 
 alias open=~/.scripts/tmux-sessionizer.sh
+alias tmuxx=open
+alias vim=nvim
+bindkey -s ^f "tmuxx\n"

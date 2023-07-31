@@ -147,3 +147,4 @@ export PATH=$HOME/platform-tools:$PATH
 export AWS_EC2_METADATA_DISABLED=true
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

@@ -3791,6 +3791,8 @@ Command failed\.</string>
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>ShowPaneTitles</key>
