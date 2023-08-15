@@ -179,10 +179,37 @@ function startKanagawaAlt()
     vim.cmd("colorscheme kanagawa-dragon")
 end
 
+function startNeon()
+    vim.g.neon_style = "default"
+    vim.g.neon_italic_keyword = true
+    vim.g.neon_italic_function = true
+    -- vim.g.neon_transparent = true
+    vim.cmd("colorscheme neon")
+end
+
+function startNeonAlt()
+    vim.g.neon_style = "doom"
+    vim.g.neon_italic_keyword = true
+    vim.g.neon_italic_function = true
+    -- vim.g.neon_transparent = true
+    vim.cmd("colorscheme neon")
+end
+
+function startNeonDark()
+    vim.g.neon_style = "dark"
+    vim.g.neon_italic_keyword = true
+    vim.g.neon_italic_function = true
+    -- vim.g.neon_transparent = true
+    vim.cmd("colorscheme neon")
+end
+
 vim.opt.background = "dark"
 
 local themers = {
     { 'startRosePine', startRosePine, },
+    { 'startNeon', startNeon, },
+    { 'startNeonAlt', startNeonAlt, },
+    { 'startNeonDark', startNeonDark, },
     { 'startKanagawaAlt', startKanagawaAlt, },
     { 'startKanagawa', startKanagawa, },
     { 'startCatppuccin', startCatppuccin, },

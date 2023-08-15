@@ -34,6 +34,7 @@ return {
     { "bluz71/vim-moonfly-colors",  name = "moonfly" },
     'folke/tokyonight.nvim',
     'ray-x/aurora',
+    'rafamadriz/neon',
     {
         "catppuccin/nvim",
         name = "catppuccin"
