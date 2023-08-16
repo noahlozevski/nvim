@@ -80,8 +80,8 @@ local function on_attach(client, bufnr)
 
     -- formats the file
     -- vim.keymap.set({ 'n', 'x' }, '<leader>f', function() vim.lsp.buf.format() end, { buffer = bufnr, remap = false, desc = "[lsp] format" })
-    vim.api.nvim_set_keymap('n', '<leader>da', '<cmd>lua vim.lsp.buf.code_action()<CR>',
-        { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', '<leader>da', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
+
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
