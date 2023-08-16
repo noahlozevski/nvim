@@ -9,9 +9,9 @@ return {
         require('telescope').setup({
             defaults = {
                 layout_config = {
-                    -- height = vim.o.lines, -- maximally available lines
+                    height = vim.o.lines, -- maximally available lines
                     -- height = 20,
-                    -- width = vim.o.columns, -- maximally available columns
+                    width = vim.o.columns, -- maximally available columns
                     prompt_position = "bottom",
                     -- preview_height = 0.6, -- 60% of available lines
                 },
