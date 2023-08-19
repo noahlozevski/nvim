@@ -80,17 +80,26 @@ local function on_attach(client, bufnr)
 
     -- formats the file
     -- vim.keymap.set({ 'n', 'x' }, '<leader>f', function() vim.lsp.buf.format() end, { buffer = bufnr, remap = false, desc = "[lsp] format" })
-    vim.api.nvim_set_keymap('n', '<leader>da', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+    -- vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+
+    -- Opens a popup with a list of all the diagnostics from the lsp for the current line
+    vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>',
+        { noremap = true, silent = true })
+
+    -- -- Jump to next / previous diagnotic
+    -- vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
     vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set("n", "<leader>da", function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set("n", "<leader>dr", function() vim.lsp.buf.references() end, opts)
+    vim.keymap.set("n", "<leader>dn", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set("n", "<leader>di", function() vim.lsp.buf.implementation() end, opts)
+    vim.keymap.set("n", "<leader>dc", function() vim.lsp.buf.declaration() end, opts)
+    -- already mapped to gd
+    -- vim.keymap.set("n", "<leader>df", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end
 

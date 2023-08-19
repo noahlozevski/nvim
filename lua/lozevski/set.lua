@@ -12,7 +12,8 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
-vim.opt.pumheight = 10
+-- sets how many lines of suggestions to show in the popup menu
+vim.opt.pumheight = 25
 vim.opt.wrap = false
 
 vim.opt.swapfile = false
