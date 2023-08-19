@@ -1,4 +1,5 @@
 -- vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+-- vim.opt.guicursor = "n-v-c-i:block"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -86,18 +87,29 @@ for _, plugin in pairs(disabled_built_ins) do
     vim.g["loaded_" .. plugin] = 1
 end
 
-
--- This enables the diagnostic hover if the cursor is over the relevant text
--- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
-
--- This enables the hover window automatically if the the cursor is anywhere in the line
--- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
---
---
---
+-- add highlight on yank
 vim.cmd([[
 augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=150}
 augroup END
 ]])
+
+vim.cmd([[
+if argc() == 1 && isdirectory(argv(0)) | cd `=argv(0)` | endif
+]])
+
+-- vim.cmd([[
+-- augroup cdpwd
+--     autocmd!
+--     autocmd VimEnter * cd $PWD
+-- augroup END
+-- ]])
+
+-- -- This enables the diagnostic hover if the cursor is over the relevant text
+-- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+--
+-- -- This enables the hover window automatically if the the cursor is anywhere in the line
+-- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+--
+
