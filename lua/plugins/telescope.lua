@@ -5,7 +5,7 @@ return {
         { "tsakirist/telescope-lazy.nvim" },
         { "nvim-telescope/telescope-fzf-native.nvim" },
     },
-    config = function () 
+    config = function ()
         require('telescope').setup({
             defaults = {
                 layout_config = {
@@ -63,8 +63,6 @@ return {
         vim.keymap.set('n', '<leader>fb', builtin.buffers, { silent = true })
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { silent = true })
 
-        --- 
-
         -- Opens a popup with a list of all the diagnostics from the lsp for the current line
         -- Also accessible with <leader>go
         vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
@@ -76,7 +74,8 @@ return {
         -- Open telescope diagnostic window
         vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true })
 
-        -- vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+        vim.keymap.set('n', '<leader>ff', '<cmd>Telescope<CR>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<leader>fa', '<cmd>Telescope find_files hidden=true<CR>', { noremap = true, silent = true })
         -- vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
         -- vim.keymap.set('n', '<leader>fl', builtin.live_grep, {})
         -- vim.keymap.set('n', '<leader>fb', builtin.buffers, {})

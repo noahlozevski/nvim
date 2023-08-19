@@ -20,6 +20,7 @@
   "copilot.vim": { "branch": "release", "commit": "a4a6d6b3f9e284e7f5c849619e06cd228cad8abd" },
   "fuzzy.nvim": { "branch": "master", "commit": "67a42ad2fa6d5ff41f0ef3cf69bb247410da5d7a" },
   "git-blame-line.nvim": { "branch": "main", "commit": "2cb9f89776b8e7d0deda84ec827406826be1d3f9" },
+  "git-blame.vim": { "branch": "master", "commit": "9d144b7bed5d8f1c9259551768b7f3b3d1294917" },
   "github-nvim-theme": { "branch": "main", "commit": "609eb5c45d9cc677afe9b9876b3aa0dd4d39060a" },
   "harpoon": { "branch": "master", "commit": "21f4c47c6803d64ddb934a5b314dcb1b8e7365dc" },
   "indent-blankline.nvim": { "branch": "master", "commit": "4541d690816cb99a7fc248f1486aa87f3abce91c" },
