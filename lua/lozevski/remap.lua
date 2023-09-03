@@ -21,10 +21,16 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("n", "q]", ":cn<CR>")
-vim.keymap.set("n", "q[", ":cp<CR>")
 
--- greatest remap ever
+-- quick toggle between items in the quickfix list
+-- vim.keymap.set("n", "q]", ":cn<CR>zz")
+-- vim.keymap.set("n", "q[", ":cp<CR>zz")
+vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-m>", "<cmd>cprev<CR>zz")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+
+-- paste without overwriting the register with the selected text
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
@@ -48,10 +54,6 @@ vim.keymap.set({ 'n', 'x' }, '<leader>f', function() vim.lsp.buf.format() end)
 -- vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 --
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
--- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
--- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 --
 
 -- substitute all occurrences of current word
@@ -59,10 +61,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 --
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
---
--- vim.keymap.set("n", "<leader><leader>", function()
---     vim.cmd("so")
--- end)
+vim.keymap.set("n", "<leader><leader>", ":so<CR>")
 
 --[[ shortcuts for windows
     <Ctrl-W>+v       # Opens a new vertical split

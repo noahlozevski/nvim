@@ -179,6 +179,8 @@ local opts = {
         -- ["<C-Space>"] = cmp.mapping.complete(),
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
+
+        -- close the suggestion menu
         ['<C-e>'] = cmp.mapping.abort(),
         -- this is supposed to be 'safe' enter key mapping
         -- ["<CR>"] = cmp.mapping({
@@ -230,8 +232,7 @@ local opts = {
         -- buffer results usually arent as helpful
         -- { name = 'buffer' },
         fuzzy_buffer_conf,
-    }
-    )
+    })
 }
 
 

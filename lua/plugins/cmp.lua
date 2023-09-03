@@ -17,33 +17,33 @@ return {
         { 'hrsh7th/vim-vsnip' },       -- required for auto complete snips
         { 'hrsh7th/vim-vsnip-integ' }, -- required for auto compelete snips
         -- {
-            --     'David-Kunz/cmp-npm',
-            --     dependencies = { 'nvim-lua/plenary.nvim' }
-            -- },
-            {
-                'tzachar/cmp-fuzzy-buffer',
-                dependencies = { 'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim' }
-            },
-            -- {
-                --     'tzachar/cmp-fuzzy-path',
-                --     dependencies = { 'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim' }
-                -- },
-                {
-                    "petertriho/cmp-git",
-                    dependencies = "nvim-lua/plenary.nvim"
-                },
-                -- Auto inserts parathensis / brackets
-                {
-                    "windwp/nvim-autopairs",
-                },
-                -- Zsh autocompletions
-                -- { "Shougo/deol.nvim" },
-                -- { 'hrsh7th/cmp-emoji' },
-                -- for icons in completion menu
-                { 'onsails/lspkind.nvim', }
-            },
-            config = function()
-                -- load custom cmp config
-                require('lozevski.cmp')
-            end
-        }
+        --     'David-Kunz/cmp-npm',
+        --     dependencies = { 'nvim-lua/plenary.nvim' }
+        -- },
+        {
+            'tzachar/cmp-fuzzy-buffer',
+            dependencies = { 'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim' }
+        },
+        -- {
+        --     'tzachar/cmp-fuzzy-path',
+        --     dependencies = { 'hrsh7th/nvim-cmp', 'tzachar/fuzzy.nvim' }
+        -- },
+        {
+            "petertriho/cmp-git",
+            dependencies = "nvim-lua/plenary.nvim"
+        },
+        -- Auto inserts parathensis / brackets
+        {
+            "windwp/nvim-autopairs",
+        },
+        -- Zsh autocompletions
+        -- { "Shougo/deol.nvim" },
+        -- { 'hrsh7th/cmp-emoji' },
+        -- for icons in completion menu
+        { 'onsails/lspkind.nvim', }
+    },
+    config = function()
+        -- load custom cmp config
+        require('lozevski.cmp')
+    end
+}
