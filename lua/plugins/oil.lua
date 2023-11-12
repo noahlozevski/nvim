@@ -1,7 +1,8 @@
 return {
     'stevearc/oil.nvim',
     config = function()
-        require("oil").setup({
+        local oil = require("oil")
+        oil.setup({
             -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
             -- Set to false if you still want to use netrw.
             default_file_explorer = true,
@@ -9,8 +10,8 @@ return {
             -- See :help oil-columns
             columns = {
                 "icon",
-                "size",
-                "mtime",
+                -- "size",
+                -- "mtime",
                 -- "permissions",
             },
             -- Buffer-local options to use for oil buffers
@@ -25,7 +26,7 @@ return {
                 cursorcolumn = false,
                 foldcolumn = "0",
                 spell = false,
-                list = false,
+                list = true,
                 conceallevel = 3,
                 concealcursor = "nvic",
             },
@@ -50,21 +51,23 @@ return {
                 ["<CR>"] = "actions.select",
                 ["<C-s>"] = "actions.select_vsplit",
                 ["<C-h>"] = "actions.select_split",
-                ["<C-t>"] = "actions.select_tab",
-                -- ["<C-p>"] = "actions.preview",
-                ["<C-c>"] = "actions.close",
+                -- ["<C-t>"] = "actions.select_tab",
+                -- ["<C-c>"] = "actions.close",
+                -- ["<Esc>"] = "toggle_float",
+                -- ["<C-c>"] = "toggle_float",
+                ["P"] = "actions.preview",
                 ["<C-l>"] = "actions.refresh",
                 ["-"] = "actions.parent",
                 ["_"] = "actions.open_cwd",
                 ["`"] = "actions.cd",
-                ["~"] = "actions.tcd",
+                -- ["~"] = "actions.tcd",
                 ["gs"] = "actions.change_sort",
                 ["gx"] = "actions.open_external",
                 ["g."] = "actions.toggle_hidden",
                 ["g\\"] = "actions.toggle_trash",
             },
             -- Set to false to disable all of the above keymaps
-            use_default_keymaps = true,
+            use_default_keymaps = false,
             view_options = {
                 -- Show files and directories that start with "."
                 show_hidden = false,
@@ -138,6 +141,12 @@ return {
                 },
             },
         })
+
+        vim.keymap.set(
+            "n",
+            "-",
+            function() oil.open_float() end,
+            { desc = "Open Oil", silent = true, noremap = true })
     end,
     dependencies = { "nvim-tree/nvim-web-devicons" },
 }
