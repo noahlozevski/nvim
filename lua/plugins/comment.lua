@@ -4,6 +4,8 @@ return {
         'JoosepAlviste/nvim-ts-context-commentstring'
     },
     config = function()
+        vim.g.skip_ts_context_commentstring_module = true
+
         require('Comment').setup({
             ---Add a space b/w comment and the line
             padding = true,
@@ -42,10 +44,10 @@ return {
                 ---Extra mapping; `gco`, `gcO`, `gcA`
                 extra = true,
             },
-            ---Function to call before (un)comment
-            pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+            -- ---Function to call before (un)comment
+            -- pre_hook = require('ts_context_commentstring').create_pre_hook(),
             ---Function to call after (un)comment
-            post_hook = nil,
+            -- post_hook = nil,
         })
     end
 }

@@ -6,6 +6,9 @@ return {
         'RRethy/nvim-treesitter-textsubjects'
     },
     config = function () 
+        vim.g.skip_ts_context_commentstring_module = true
+        require('ts_context_commentstring').setup()
+
         require('nvim-treesitter.configs').setup {
 
             -- A list of parser names, or "all" (the five listed parsers should always be installed)
@@ -53,11 +56,11 @@ return {
                 },
             },
 
-            -- uses comment string from language grammar
-            context_commentstring = {
-                enable = true,
-                enable_autocmd = false
-            },
+            -- -- uses comment string from language grammar
+            -- context_commentstring = {
+            --     enable = true,
+            --     enable_autocmd = false
+            -- },
 
 
             -- smart incremental selection
