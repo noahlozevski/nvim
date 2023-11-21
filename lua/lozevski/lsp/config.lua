@@ -206,6 +206,25 @@ lspconfig.lua_ls.setup {
     },
 }
 
+-- -- swift lsp setup
+-- local swift_lsp = vim.api.nvim_create_augroup("swift_lsp", { clear = true })
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = { "swift" },
+--     callback = function()
+--         local root_dir = vim.fs.dirname(vim.fs.find({
+--             ".git",
+--         }, { upward = true })[0])
+--         local client = vim.lsp.start({
+--             name = "sourcekit-lsp",
+--             cmd = { "xcrun sourcekit-lsp" },
+--             root_dir = root_dir,
+--         })
+--         vim.lsp.buf_attach_client(0, client)
+--     end,
+--     group = swift_lsp,
+-- })
+
+
 pcall(require, 'lozevski.lsp.work')
 
 lsp.setup()
