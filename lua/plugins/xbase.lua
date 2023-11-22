@@ -9,7 +9,7 @@ return {
     config = function()
         require 'xbase'.setup({
             --- Log level. Set it to ERROR to ignore everything
-            log_level = vim.log.levels.ERROR,
+            log_level = vim.log.levels.INFO,
             --- Options to be passed to lspconfig.nvim's sourcekit setup function.
             --- Setting this to {} is sufficient, However, it is strongly recommended to use on_attach key to setup custom mappings
             sourcekit = {
