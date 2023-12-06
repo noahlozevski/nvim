@@ -54,55 +54,95 @@ local function allow_format(servers)
 end
 
 local function on_attach(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-
     lsp.default_keymaps({ buffer = bufnr })
-    -- This enables auto format on save with all available lsp servers for the file type
-    -- lsp.buffer_autoformat()
-    -- Enables async format on save capability for a set of servers
-
-    -- -- Asynchronously autoformat the file on save
-    -- if vim.tbl_contains(allowed_format_servers, client.name) then
-    --     require('lsp-format').on_attach(client)
-    -- end
+    require('lsp-format').on_attach(client)
+    -- local opts = { buffer = bufnr, remap = false }
     --
-    -- format the file using default lsp server
-    -- vim.keymap.set({ 'n', 'x' }, 'gq', function()
-    --     vim.lsp.buf.format({
-    --         async = false,
-    --         timeout_ms = 10000,
-    --         -- filter = allow_format(allowed_format_servers)
-    --         -- filter = function(client)
-    --         --     return client.name ~= 'null-ls'
-    --         -- end
-    --     })
-    -- end)
-
-    -- formats the file
-    -- vim.keymap.set({ 'n', 'x' }, '<leader>f', function() vim.lsp.buf.format() end, { buffer = bufnr, remap = false, desc = "[lsp] format" })
-
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    -- vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-
-    -- Opens a popup with a list of all the diagnostics from the lsp for the current line
-    vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>',
-        { noremap = true, silent = true })
-
-    -- -- Jump to next / previous diagnotic
-    -- vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>da", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>dr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>dn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("n", "<leader>di", function() vim.lsp.buf.implementation() end, opts)
-    vim.keymap.set("n", "<leader>dc", function() vim.lsp.buf.declaration() end, opts)
-    -- already mapped to gd
-    -- vim.keymap.set("n", "<leader>df", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    -- -- This enables auto format on save with all available lsp servers for the file type
+    -- -- lsp.buffer_autoformat()
+    -- -- Enables async format on save capability for a set of servers
+    --
+    -- -- -- Asynchronously autoformat the file on save
+    -- -- if vim.tbl_contains(allowed_format_servers, client.name) then
+    -- --     require('lsp-format').on_attach(client)
+    -- -- end
+    -- --
+    -- -- format the file using default lsp server
+    -- -- vim.keymap.set({ 'n', 'x' }, 'gq', function()
+    -- --     vim.lsp.buf.format({
+    -- --         async = false,
+    -- --         timeout_ms = 10000,
+    -- --         -- filter = allow_format(allowed_format_servers)
+    -- --         -- filter = function(client)
+    -- --         --     return client.name ~= 'null-ls'
+    -- --         -- end
+    -- --     })
+    -- -- end)
+    --
+    -- -- formats the file
+    -- -- vim.keymap.set({ 'n', 'x' }, '<leader>f', function() vim.lsp.buf.format() end, { buffer = bufnr, remap = false, desc = "[lsp] format" })
+    --
+    -- vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+    -- vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+    -- -- vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+    --
+    -- -- Opens a popup with a list of all the diagnostics from the lsp for the current line
+    -- vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>',
+    --     { noremap = true, silent = true })
+    --
+    -- -- -- Jump to next / previous diagnotic
+    -- -- vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+    -- vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+    -- vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+    -- vim.keymap.set("n", "<leader>da", function() vim.lsp.buf.code_action() end, opts)
+    -- vim.keymap.set("n", "<leader>dr", function() vim.lsp.buf.references() end, opts)
+    -- vim.keymap.set("n", "<leader>dn", function() vim.lsp.buf.rename() end, opts)
+    -- vim.keymap.set("n", "<leader>di", function() vim.lsp.buf.implementation() end, opts)
+    -- vim.keymap.set("n", "<leader>dc", function() vim.lsp.buf.declaration() end, opts)
+    -- -- already mapped to gd
+    -- -- vim.keymap.set("n", "<leader>df", function() vim.lsp.buf.definition() end, opts)
+    -- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end
 
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client.server_capabilities.hoverProvider then
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
+        end
+        if client.server_capabilities.signatureHelpProvider then
+            vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, { buffer = args.buf })
+        end
+        if client.server_capabilities.declarationProvider then
+            vim.keymap.set('n', 'dc', vim.lsp.buf.declaration, { buffer = args.buf })
+        end
+        if client.server_capabilities.definitionProvider then
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = args.buf })
+        end
+        if client.server_capabilities.typeDefinitionProvider then
+            vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, { buffer = args.buf })
+        end
+        if client.server_capabilities.implementationProvider then
+            vim.keymap.set('n', 'di', vim.lsp.buf.implementation, { buffer = args.buf })
+        end
+        if client.server_capabilities.referencesProvider then
+            vim.keymap.set('n', 'dr', vim.lsp.buf.references, { buffer = args.buf })
+        end
+        if client.server_capabilities.renameProvider then
+            vim.keymap.set('n', 'dn', vim.lsp.buf.rename, { buffer = args.buf })
+        end
+        if client.server_capabilities.codeActionProvider then
+            vim.keymap.set('n', '<leader>da', vim.lsp.buf.code_action, { buffer = args.buf })
+        end
+
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { buffer = args.buf })
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { buffer = args.buf })
+        -- vim.keymap.set("n", "<leader>do", function() vim.diagnostic.open_float() end, opts)
+        vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float, { buffer = args.buf })
+        vim.api.nvim_create_user_command('Dllist', vim.diagnostic.setloclist, {})
+        vim.api.nvim_create_user_command('Dclist', vim.diagnostic.setqflist, {})
+    end,
+})
 lsp.on_attach = on_attach
 
 vim.diagnostic.config({
@@ -117,32 +157,23 @@ vim.diagnostic.config({
 -- Set up lspconfig for each server
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
-local configured_servers = {
-    -- 'tsserver',
-    -- 'eslint',
-    'clangd',
-    'rust_analyzer',
-    'lua_ls',
-    'kotlin_language_server',
-    -- 'shfmt',
-    -- 'null-ls',
-}
+-- local configured_servers = {
+--     -- 'tsserver',
+--     -- 'eslint',
+--     'clangd',
+--     'rust_analyzer',
+--     'lua_ls',
+--     'kotlin_language_server',
+--     -- 'shfmt',
+--     -- 'null-ls',
+-- }
 
-for i, server in ipairs(configured_servers) do
-    lspconfig[server].setup {
-        on_attach = on_attach,
-        capabilities = capabilities
-    }
-end
-
-require("lspconfig").clangd.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = {
-        "clangd",
-        "--offset-encoding=utf-16",
-    },
-}
+-- for i, server in ipairs(configured_servers) do
+--     -- lspconfig[server].setup {
+--     --     on_attach = on_attach,
+--     --     capabilities = capabilities
+--     -- }
+-- end
 
 local function filter(arr, fn)
     if type(arr) ~= "table" then
@@ -163,48 +194,130 @@ local function filterReactDTS(value)
     return string.match(value.targetUri, '%.d.ts') == nil
 end
 
+require("mason").setup()
+require("mason-lspconfig").setup_handlers {
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function(server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup {
+            on_attach = on_attach,
+            capabilities = capabilities
+        }
+    end,
+    -- Next, you can provide a dedicated handler for specific servers.
+    -- For example, a handler override for the `rust_analyzer`:
+    ["clangd"] = function()
+        lspconfig.clangd.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+            cmd = {
+                "clangd",
+                "--offset-encoding=utf-16",
+            },
+        }
+    end,
+    ["tsserver"] = function()
+        lspconfig.tsserver.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact',
+                'typescript.tsx' },
+            handlers = {
+                ['textDocument/definition'] = function(err, result, method, ...)
+                    if vim.tbl_islist(result) and #result > 1 then
+                        local filtered_result = filter(result, filterReactDTS)
+                        return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
+                    end
+                    vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
+                end
 
-
-lspconfig.tsserver.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
-    handlers = {
-        ['textDocument/definition'] = function(err, result, method, ...)
-            if vim.tbl_islist(result) and #result > 1 then
-                local filtered_result = filter(result, filterReactDTS)
-                return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
-            end
-
-            vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
-        end
-
-    }
-}
-
-lspconfig.eslint.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
-}
--- Fixes the undefined vim global annoyance
-lspconfig.lua_ls.setup {
-    settings = {
-        Lua = {
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = {
-                    'vim',
-                    'augroup',
-                    'require'
+            }
+        }
+    end,
+    ["eslint"] = function()
+        lspconfig.eslint.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact',
+                'typescript.tsx' },
+        }
+    end,
+    ["lua_ls"] = function()
+        -- Fixes the undefined vim global annoyance
+        lspconfig.lua_ls.setup {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        -- Get the language server to recognize the `vim` global
+                        globals = {
+                            'vim',
+                            'augroup',
+                            'require'
+                        },
+                    },
+                    telemetry = {
+                        enable = false,
+                    },
                 },
             },
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
+        }
+    end,
+
+
 }
+
+-- require("lspconfig").clangd.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     cmd = {
+--         "clangd",
+--         "--offset-encoding=utf-16",
+--     },
+-- }
+
+
+
+-- lspconfig.tsserver.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+--     handlers = {
+--         ['textDocument/definition'] = function(err, result, method, ...)
+--             if vim.tbl_islist(result) and #result > 1 then
+--                 local filtered_result = filter(result, filterReactDTS)
+--                 return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
+--             end
+--
+--             vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
+--         end
+--
+--     }
+-- }
+
+-- lspconfig.eslint.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+-- }
+-- -- Fixes the undefined vim global annoyance
+-- lspconfig.lua_ls.setup {
+--     settings = {
+--         Lua = {
+--             diagnostics = {
+--                 -- Get the language server to recognize the `vim` global
+--                 globals = {
+--                     'vim',
+--                     'augroup',
+--                     'require'
+--                 },
+--             },
+--             telemetry = {
+--                 enable = false,
+--             },
+--         },
+--     },
+-- }
 
 -- -- swift lsp setup
 -- local swift_lsp = vim.api.nvim_create_augroup("swift_lsp", { clear = true })
