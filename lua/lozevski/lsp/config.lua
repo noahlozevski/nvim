@@ -319,23 +319,39 @@ require("mason-lspconfig").setup_handlers {
 --     },
 -- }
 
--- -- swift lsp setup
--- local swift_lsp = vim.api.nvim_create_augroup("swift_lsp", { clear = true })
--- vim.api.nvim_create_autocmd("FileType", {
---     pattern = { "swift" },
---     callback = function()
---         local root_dir = vim.fs.dirname(vim.fs.find({
---             ".git",
---         }, { upward = true })[0])
---         local client = vim.lsp.start({
---             name = "sourcekit-lsp",
---             cmd = { "xcrun sourcekit-lsp" },
---             root_dir = root_dir,
---         })
---         vim.lsp.buf_attach_client(0, client)
---     end,
---     group = swift_lsp,
--- })
+
+local function get_store_kit_lsp_path()
+    local isMac = vim.loop.os_uname().sysname == "Darwin"
+    if isMac then
+        local sourceKitPath = vim.fn.system("xcrun --find sourcekit-lsp")
+        if sourceKitPath then
+            return sourceKitPath:gsub("%s+", "")
+        end
+    end
+    return "sourcekit-lsp"
+end
+
+
+
+-- swift lsp setup, needs to be seperate from mason since sourcekit isnt supported there
+local swift_lsp = vim.api.nvim_create_augroup("swift_lsp", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "swift" },
+    callback = function()
+        local root_dir = vim.fs.dirname(vim.fs.find({
+            "Package.swift",
+            ".git"
+        }, { upward = true })[1])
+        local sourceKitPath = get_store_kit_lsp_path()
+        local client = vim.lsp.start({
+            name = "sourcekit-lsp",
+            cmd = { sourceKitPath },
+            root_dir = root_dir,
+        })
+        vim.lsp.buf_attach_client(0, client)
+    end,
+    group = swift_lsp,
+})
 
 
 pcall(require, 'lozevski.lsp.work')
