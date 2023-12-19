@@ -2,7 +2,7 @@
 -- vim.opt.guicursor = "n-v-c-i:block"
 vim.opt.guicursor = "a:blinkon0"
 
--- vim.opt.guicursor = ""
+vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
