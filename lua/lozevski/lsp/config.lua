@@ -55,7 +55,7 @@ end
 
 local function on_attach(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
-    require('lsp-format').on_attach(client)
+    -- require('lsp-format').on_attach(client)
     -- local opts = { buffer = bufnr, remap = false }
     --
     -- -- This enables auto format on save with all available lsp servers for the file type
