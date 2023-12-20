@@ -4,6 +4,8 @@ return {
         'JoosepAlviste/nvim-ts-context-commentstring'
     },
     config = function()
+        vim.g.skip_ts_context_commentstring_module = true
+
         require('Comment').setup({
             ---Add a space b/w comment and the line
             padding = true,

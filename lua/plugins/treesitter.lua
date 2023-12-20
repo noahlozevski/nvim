@@ -53,12 +53,12 @@ return {
                 },
             },
 
-            -- uses comment string from language grammar
-            context_commentstring = {
-                enable = true,
-                enable_autocmd = false
-            },
-
+            -- -- uses comment string from language grammar
+            -- context_commentstring = {
+            --     enable = true,
+            --     enable_autocmd = false
+            -- },
+            --
 
             -- smart incremental selection
             textsubjects = {

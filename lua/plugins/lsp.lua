@@ -15,8 +15,11 @@ return {
         { 'lukas-reineke/lsp-format.nvim' }, -- Required for async format on save
         { 'hrsh7th/cmp-nvim-lsp-signature-help' },
         { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
-        { 'neovim/nvim-lspconfig' } -- Required
-
+        {
+            'creativenull/efmls-configs-nvim',
+            version = 'v1.x.x', -- version is optional, but recommended
+            dependencies = { 'neovim/nvim-lspconfig' },
+        }
     },
     config = function()
         -- load lsp config

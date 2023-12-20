@@ -263,9 +263,38 @@ require("mason-lspconfig").setup_handlers {
             },
         }
     end,
+    ["efm"] = function()
+        local eslint = require('efmls-configs.linters.eslint_d')
+        local prettier = require('efmls-configs.formatters.prettier_d')
 
+        -- EFM formatting language specs
+        local languages = require('efmls-configs.defaults').languages()
 
+        languages = vim.tbl_extend('force', languages, {
+            typescript = { eslint, prettier },
+            ["typescript.jsx"] = { eslint, prettier },
+            typescriptreact = { eslint, prettier },
+            javascript = { eslint, prettier },
+            ["javascript.jsx"] = { eslint, prettier },
+            javascriptreact = { eslint, prettier }
+        })
+
+        -- manual lsp config must come after mason-lspconfig
+        -- EFM for eslint / prettier / formatting stuff
+        lspconfig.efm.setup {
+            filetypes = vim.tbl_keys(languages),
+            init_options = {
+                documentFormatting = true,
+                documentRangeFormatting = true,
+            },
+            settings = {
+                rootMarkers = { ".git/" },
+                languages = languages
+            }
+        }
+    end,
 }
+
 
 -- require("lspconfig").clangd.setup {
 --     on_attach = on_attach,
