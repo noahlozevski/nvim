@@ -37,21 +37,21 @@ lsp.set_preferences({
     }
 })
 
--- These languages will be formatted on save + will be loaded on start
-local allowed_format_servers = {
-    -- 'tsserver',
-    -- 'eslint',
-    'clangd',
-    'rust_analyzer',
-    'lua_ls',
-    -- 'null-ls',
-    -- 'html',
-    -- 'css'
-    -- 'prettier',
-}
-local function allow_format(servers)
-    return function(client) return vim.tbl_contains(servers, client.name) end
-end
+-- -- These languages will be formatted on save + will be loaded on start
+-- local allowed_format_servers = {
+--     -- 'tsserver',
+--     -- 'eslint',
+--     'clangd',
+--     'rust_analyzer',
+--     'lua_ls',
+--     -- 'null-ls',
+--     -- 'html',
+--     -- 'css'
+--     -- 'prettier',
+-- }
+-- local function allow_format(servers)
+--     return function(client) return vim.tbl_contains(servers, client.name) end
+-- end
 
 local function on_attach(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
