@@ -123,7 +123,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, { buffer = args.buf })
         end
         if client.server_capabilities.implementationProvider then
-            vim.keymap.set('n', 'di', vim.lsp.buf.implementation, { buffer = args.buf })
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = args.buf })
         end
         if client.server_capabilities.referencesProvider then
             vim.keymap.set('n', 'dr', vim.lsp.buf.references, { buffer = args.buf })
