@@ -12,6 +12,8 @@ end
 -- no_remap("<Right>", "<Nop>")
 
 no_remap("<C-f>", "<cmd>silent !tmux neww ~/tmux-sessionizer.sh<CR>")
+no_remap("<PageUp>", "<C-u>zz")
+no_remap("<PageDown>", "<C-d>zz")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

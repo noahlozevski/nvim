@@ -40,7 +40,7 @@ vim.opt.colorcolumn = "80"
 -- global statusline
 vim.opt.laststatus = 3
 vim.wo.cursorline = true
-vim.opt.statusline = " %f %m %= %l:%c ♥ "
+vim.opt.statusline = " %f %m %= %F %l:%c ♥ "
 
 vim.opt.showmatch = true          -- Highlight matching parenthesis
 vim.opt.clipboard = 'unnamedplus' -- Copy/paste to system clipboard
@@ -76,7 +76,7 @@ local disabled_built_ins = {
     "vimballPlugin",
     "zip",
     "zipPlugin",
-    "tutor",
+    -- "tutor",
     "rplugin",
     "synmenu",
     "optwin",
